@@ -1,0 +1,128 @@
+{
+  "feedbacks": [
+    {
+      "id": 1,
+      "title": "Add a dark theme option",
+      "description": "It would help people with light sensitivities and who prefer dark mode.",
+      "category": "Feature",
+      "upvotes": 99,
+      "status": "InProgress",
+      "comments": [
+        {
+          "id": 1,
+          "author": "Jamas Skinner",
+          "content": "Second this! I do a lot of late night coding and reading...",
+          "username": "@jamesskinner",
+          "timestamp": "2025-02-13T10:14:22Z",
+          "replies": [
+            {
+              "id": 1,
+              "author": "Anne Valentine",
+              "content": "@jamesskinner While waiting for dark mode...",
+              "username": "@annev1990",
+              "timestamp": "2025-02-13T10:14:37Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Add tags for solutions",
+      "description": "Easier to search for solutions based on a specific stack.",
+      "category": "Enhancement",
+      "upvotes": 112,
+      "status": "Planned",
+      "comments": []
+    },
+    {
+      "id": 3,
+      "title": "Q&A within the challenge hubs",
+      "description": "Challenge-specific Q&A would make for easy reference.",
+      "category": "Feature",
+      "upvotes": 65,
+      "status": "Planned",
+      "comments": [
+        {
+          "id": 2,
+          "author": "Ryan Welles",
+          "content": "This would be really helpful for beginners.",
+          "username": "@voyager.344",
+          "timestamp": "2025-02-13T10:15:00Z",
+          "replies": []
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Allow image/video upload",
+      "description": "Images and screenshots can enhance comments on solutions.",
+      "category": "Enhancement",
+      "upvotes": 51,
+      "status": "InProgress",
+      "comments": []
+    },
+    {
+      "id": 5,
+      "title": "Ability to follow others",
+      "description": "Stay updated on comments and solutions other people post.",
+      "category": "Feature",
+      "upvotes": 42,
+      "status": "Live",
+      "comments": []
+    },
+    {
+      "id": 6,
+      "title": "Preview images not loading",
+      "description": "Challenge preview images are missing when you apply a filter.",
+      "category": "Bug",
+      "upvotes": 3,
+      "status": "InProgress",
+      "comments": []
+    },
+    {
+      "id": 7,
+      "title": "One-click portfolio generation",
+      "description": "Add ability to create professional looking portfolio from profile.",
+      "category": "Feature",
+      "upvotes": 62,
+      "status": "InProgress",
+      "comments": []
+    },
+    {
+      "id": 8,
+      "title": "Bookmark challenges",
+      "description": "Be able to bookmark challenges to take later on.",
+      "category": "Feature",
+      "upvotes": 31,
+      "status": "InProgress",
+      "comments": []
+    },
+    {
+      "id": 9,
+      "title": "Animated solution screenshots",
+      "description": "Screenshots of solutions with animations don’t display content.",
+      "category": "Bug",
+      "upvotes": 15,
+      "status": "InProgress",
+      "comments": []
+    },
+    {
+      "id": 10,
+      "title": "Add more filter options",
+      "description": "Include more filter options to refine search results.",
+      "category": "Enhancement",
+      "upvotes": 45,
+      "status": "Planned",
+      "comments": []
+    }
+  ],
+  
+  "categories": ["UI", "UX", "Enhancement", "Bug", "Feature"],
+  
+  "statuses": [
+    { "name": "Planned", "count": 3 },
+    { "name": "InProgress", "count": 6 },
+    { "name": "Live", "count": 1 }
+  ]
+}
