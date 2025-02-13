@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 
 .suggestionsPageHeader {
-  background: radial-gradient(128.88% 128.88% at 103.9% -10.39%, #E84D70 0%, #A337F6 53.09%, #28A7ED 100%);
   display: flex;
   justify-content: space-between;
-  padding-inline: 24px;
   position: relative;
-  z-index: 12;
+  z-index: 30;
+  padding-inline: 24px;
+  background: radial-gradient(128.88% 128.88% at 103.9% -10.39%, #E84D70 0%, #A337F6 53.09%, #28A7ED 100%);
 
   img {
     padding-block: 27px;
@@ -36,24 +36,25 @@
 .hamburger-menu-overlay.block::before {
   content: '';
   position: fixed;
+  z-index: 10;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 10;
 }
 
 .hamburger-menu-content.block {
   position: absolute;
-  top: 100%;
-  right: 0;
+  z-index: 20;
+  height: 100vh;
   width: 271px;
-  background-color: #fff;
-  transition: transform 0.3s ease;
-  transform: translateY(10px);
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  z-index: 10;
+  top: 72px;
+  right: 0;
+  background-color: #F7F8FD;
+  padding: 24px;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(0);
 }
 
 .hamburger-menu {
@@ -61,9 +62,45 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 11;
-  position: relative;
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
 }
+
+.categories {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 24px 18px 36px 24px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+button {
+  background-color: #F2F4FF;
+  color: #4661E6;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 18.79px;
+  letter-spacing: 0px;
+  border: none;
+  padding: 5px 16px;
+  border-radius: 10px;
+}
+
+button:active,
+button:focus {
+  background-color: #4661E6;
+  color: #fff;
+}
+
+button:hover {
+  background-color: #CFD7FF;
+}
+
 
 .hamburger-menu-overlay.none,
 .hamburger-menu-content.none {
