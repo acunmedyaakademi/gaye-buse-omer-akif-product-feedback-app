@@ -2,6 +2,31 @@
   background: radial-gradient(128.88% 128.88% at 103.9% -10.39%, #E84D70 0%, #A337F6 53.09%, #28A7ED 100%);
 }
 
+.upvote-section {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background-color: #F2F4FE;
+  border-style: none;
+  padding: 6px 14px;
+  cursor: pointer;
+
+}
+
+.upvote-section:hover {
+  background-color: #cfd7ff;
+  color : #3A4374;
+}
+
+.upvote-section p {
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 18.79px;
+  letter-spacing: -0.18px;
+  text-align: center;
+  color : #3A4374;
+}
+
 @media (width >= 768px) {
   
 }
