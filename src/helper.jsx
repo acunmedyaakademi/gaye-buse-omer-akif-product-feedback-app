@@ -21,7 +21,7 @@ export function getPage(url) {
   const exactPage = routes.find((x) => x.url === url);
   if (exactPage) return exactPage;
 
-  if (url.startsWith("/not-detay/")) {
+  if (url.startsWith("/feedback-detail/")) {
     return { title: "Feedback Detail", component: <FeedbackDetail /> };
   }
 

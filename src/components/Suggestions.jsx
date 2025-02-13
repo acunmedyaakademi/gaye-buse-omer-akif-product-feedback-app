@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { FeedbackContext } from "./FeedbackContext";
 
 export default function Suggestions() {
-  const { feedback } = useContext(FeedbackContext);
+  const { feedbacks } = useContext(FeedbackContext);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Hamburger menü için state
 
@@ -65,8 +65,10 @@ export default function Suggestions() {
         </div>
       )}
       <ul className="feedbackList">
-        {feedback.map((x) => (
-          <li className="feedback" key={x.id}>
+        {feedbacks.map((x) => (
+          <li className="feedback" key={x.id} onClick={() => {
+              window.location.hash = `#/feedback-detail/${x.id}`; // 📌 Mobilde detay sayfasına git
+          }}>
             <h5>{x.title}</h5>
             <p>{x.description}</p>
             <p>{x.category}</p>

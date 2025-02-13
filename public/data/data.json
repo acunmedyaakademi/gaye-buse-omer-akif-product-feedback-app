@@ -23,6 +23,29 @@
               "timestamp": "2025-02-13T10:14:37Z"
             }
           ]
+        },
+        {
+          "id": 2,
+          "author": "Jamas Skinner",
+          "content": "Second this! I do a lot of late night coding and reading...",
+          "username": "@jamesskinner",
+          "timestamp": "2025-02-13T10:14:22Z",
+          "replies": [
+            {
+              "id": 1,
+              "author": "Anne Valentine",
+              "content": "@jamesskinner While waiting for dark mode...",
+              "username": "@annev1990",
+              "timestamp": "2025-02-13T10:14:37Z"
+            },
+            {
+              "id": 2,
+              "author": "Anne Valentine",
+              "content": "@jamesskinner While waiting for dark mode...",
+              "username": "@annev1990",
+              "timestamp": "2025-02-13T10:14:37Z"
+            }
+          ]
         }
       ]
     },
