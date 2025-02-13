@@ -32,7 +32,7 @@ export default function Suggestions() {
       {isMobile ? (
         <div className="suggestionsPageHeader">
           <div className="headerText">
-            <h5>Frontend Mentor</h5>
+            <h5>Deneme</h5>
             <p>Feedback Board</p>
           </div>
           <div className="hamburger-menu">
