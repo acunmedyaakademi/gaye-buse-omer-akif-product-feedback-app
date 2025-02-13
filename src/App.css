@@ -1,7 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
 .suggestionsPageHeader {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 30;
+  padding-inline: 24px;
   background: radial-gradient(128.88% 128.88% at 103.9% -10.39%, #E84D70 0%, #A337F6 53.09%, #28A7ED 100%);
+
+  img {
+    padding-block: 27px;
+    cursor: pointer;
+  }
 }
 
+.headerText {
+  padding-block: 15px;
+  color: #FFFFFF;
+
+  h5 {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 21.68px;
+    letter-spacing: -0.19px;
+  }
+
+  p {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 18.79px;
+    letter-spacing: 0px;
+  }
+}
+
+.hamburger-menu-overlay.block::before {
+  content: '';
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hamburger-menu-content.block {
+  position: absolute;
+  z-index: 20;
+  height: 100vh;
+  width: 271px;
+  top: 72px;
+  right: 0;
+  background-color: #F7F8FD;
+  padding: 24px;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(0);
+}
+
+.hamburger-menu {
+  width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 30;
+}
+
+.categories {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 24px 18px 36px 24px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+button {
+  background-color: #F2F4FF;
+  color: #4661E6;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 18.79px;
+  letter-spacing: 0px;
+  border: none;
+  padding: 5px 16px;
+  border-radius: 10px;
+}
+
+button:active,
+button:focus {
+  background-color: #4661E6;
+  color: #fff;
+}
+
+button:hover {
+  background-color: #CFD7FF;
+}
+
+
+.hamburger-menu-overlay.none,
+.hamburger-menu-content.none {
+  display: none;
+}
+
+.commentsList {
+  list-style: none;
+  padding: 0;
+}
+
+.commentAuthor {
+  display: flex;
+  flex-direction: column;
+}
+
+.addComment {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.addComment form {
+  display: flex;
+  flex-direction: column;
+}
+
+.addComment textarea {
+  width: 100%;
+  height: 80px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 14px;
+  resize: none;
+}
+
+.commentFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.commentFooter p {
+  font-size: 14px;
+  color: #666;
+}
+
+.commentFooter button {
+  background: #4661E6;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.commentFooter button:disabled {
+  background: #b3b3b3;
+  cursor: not-allowed;
+}
+
+/* omer baslangic*/
 .upvote-section {
   display: flex;
   gap: 10px;
@@ -27,7 +191,13 @@
   color : #3A4374;
 }
 
+/* omer bitis */
+
 @media (width >= 768px) {
+
+  .hamburger-menu-overlay, .hamburger-menu {
+    display: none;
+  }
   
 }
 

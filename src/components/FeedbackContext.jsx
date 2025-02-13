@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from "react";
 export const FeedbackContext = createContext();
 
 export function FeedbackProvider({ children }) {
-  const [feedback, setFeedback] = useState([]);
+  const [feedbacks, setFeedbacks] = useState([]);
   // const [selectedNotes, setSelectedNotes] = useState(() => {
   //   return JSON.parse(localStorage.getItem("archivedNotes")) || [];
   // });
@@ -11,8 +11,7 @@ export function FeedbackProvider({ children }) {
   useEffect(() => {
     async function fetchNotes() {
       const data = await fetch("data/data.json").then((r) => r.json());
-      setFeedback(data.feedbacks);
-      localStorage.setItem("feedbackData", JSON.stringify(data.feedbacks));
+      setFeedbacks(data.feedbacks);
     }
     fetchNotes();
   }, []);
@@ -26,7 +25,7 @@ export function FeedbackProvider({ children }) {
   // };
 
   return (
-    <FeedbackContext.Provider value={{ feedback, setFeedback }}>
+    <FeedbackContext.Provider value={{ feedbacks, setFeedbacks }}>
       {children}
     </FeedbackContext.Provider>
   );

@@ -2,17 +2,9 @@ import { useContext, useState, useEffect } from "react";
 import { FeedbackContext } from "./FeedbackContext";
 
 export default function Suggestions() {
-  const {feedback, setFeedback } = useContext(FeedbackContext);
+  const { feedbacks, setFeedbacks } = useContext(FeedbackContext);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-
-  // useEffect(() => {
-  //   const storedData = localStorage.getItem("feedbackData");
-  //   storedData && setFeedback(JSON.parse(storedData));
-  // }, []);
-  
-  // useEffect(() => {
-  //   localStorage.setItem("feedbackData", JSON.stringify(feedback));
-  // }, [feedback]);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Hamburger menü için state
 
   useEffect(() => {
     const handleResize = () => {
@@ -22,9 +14,14 @@ export default function Suggestions() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Hamburger menüyü aç/kapat
+  function hamburgerMenu() {
+    setIsMenuOpen((prevState) => !prevState);
+  }
+
   function handleUpvotes(id) {
-    setFeedback(
-      feedback.map((item) =>
+    setFeedbacks(
+      feedbacks.map((item) =>
         item.id ===id ? {...item, upvotes : item.upvotes + 1 } : item
       )
     );
@@ -38,7 +35,46 @@ export default function Suggestions() {
             <h5>Frontend Mentor</h5>
             <p>Feedback Board</p>
           </div>
-          <img src="svg/hamburgerIcon.svg" alt="hamburger icon" />
+          <div className="hamburger-menu">
+            <img
+              src={
+                isMenuOpen
+                  ? "svg/hamburgerCloseIcon.svg"
+                  : "svg/hamburgerIcon.svg"
+              }
+              alt="Hamburger Menu"
+              onClick={hamburgerMenu}
+              className={isMenuOpen ? "hamburger-icon-none" : ""}
+            />
+          </div>
+          <div
+            className={`hamburger-menu-overlay ${
+              isMenuOpen ? "block" : "none"
+            }`}
+          >
+            <div
+              className={`hamburger-menu-content ${
+                isMenuOpen ? "block" : "none"
+              }`}
+            >
+              <div className="categories">
+                <button>All</button>
+                <button>UI</button>
+                <button>UX</button>
+              </div>
+              <div className="roadmap">
+                <div className="roadmap-head">
+                  <h3>Roadmap</h3>
+                  <button>View</button>
+                </div>
+                <div className="roadmap-status">
+                  <span>Planned</span>
+                  <span>In-Progress</span>
+                  <span>Live</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       ) : (
         <div className="suggestionsPageHeader">
@@ -49,9 +85,15 @@ export default function Suggestions() {
         </div>
       )}
       <ul className="feedbackList">
-        {feedback.map((x) => (
+        {feedbacks.map((x) => (
           <li className="feedback" key={x.id}>
-            <h5>{x.title}</h5>
+            <h5
+              onClick={() => {
+                window.location.hash = `#/feedback-detail/${x.id}`; // 📌 Mobilde detay sayfasına git
+              }}
+            >
+              {x.title}
+            </h5>
             <p>{x.description}</p>
             <p>{x.category}</p>
             <button>comments: {x.comments.length}</button>
@@ -62,7 +104,7 @@ export default function Suggestions() {
           </li>
         ))}
       </ul>
+      
     </div>
   );
 }
-
