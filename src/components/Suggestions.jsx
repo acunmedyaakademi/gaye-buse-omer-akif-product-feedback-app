@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { FeedbackContext } from "./FeedbackContext";
 
 export default function Suggestions() {
-  const { feedback } = useContext(FeedbackContext);
+  const { feedbacks, setFeedbacks } = useContext(FeedbackContext);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isMenuOpen, setIsMenuOpen] = useState(false); // Hamburger menü için state
 
@@ -13,12 +13,18 @@ export default function Suggestions() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
   // Hamburger menüyü aç/kapat
   function hamburgerMenu() {
     setIsMenuOpen((prevState) => !prevState);
   }
 
+  function handleUpvotes(id) {
+    setFeedbacks(
+      feedbacks.map((item) =>
+        item.id === id ? { ...item, upvotes: item.upvotes + 1 } : item
+      )
+    );
+  };
   return (
     <div className="suggestionsPage">
       {isMobile ? (
@@ -65,17 +71,26 @@ export default function Suggestions() {
         </div>
       )}
       <ul className="feedbackList">
-        {feedback.map((x) => (
+        {feedbacks.map((x) => (
           <li className="feedback" key={x.id}>
-            <h5>{x.title}</h5>
+            <h5
+              onClick={() => {
+                window.location.hash = `#/feedback-detail/${x.id}`; // 📌 Mobilde detay sayfasına git
+              }}
+            >
+              {x.title}
+            </h5>
             <p>{x.description}</p>
             <p>{x.category}</p>
             <button>comments: {x.comments.length}</button>
-            <button>{x.upvotes}</button>
+            <button className="upvote-section" onClick={() => handleUpvotes(x.id)}>
+              <img src="/svg/upvote-icon.svg" alt="" />
+              <p>{x.upvotes}</p>
+            </button>
           </li>
         ))}
       </ul>
+
     </div>
   );
 }
-
