@@ -4,7 +4,7 @@ import { FeedbackContext } from "./FeedbackContext";
 export default function Suggestions() {
   const { feedbacks, setFeedbacks } = useContext(FeedbackContext);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // Hamburger menü için state
+  const [isMenuOpen, setIsMenuOpen] = useState(false); 
 
   useEffect(() => {
     const handleResize = () => {
