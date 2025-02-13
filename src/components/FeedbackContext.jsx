@@ -11,7 +11,7 @@ export function FeedbackProvider({ children }) {
   useEffect(() => {
     async function fetchNotes() {
       const data = await fetch("data/data.json").then((r) => r.json());
-      setFeedback(data);
+      setFeedback(data.feedbacks);
     }
     fetchNotes();
   }, []);
