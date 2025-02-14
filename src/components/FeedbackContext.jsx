@@ -14,6 +14,7 @@ export function FeedbackProvider({ children }) {
     async function fetchNotes() {
       const data = await fetch("data/data.json").then((r) => r.json());
       setFeedbacks(data.feedbacks);
+      localStorage.setItem("feedbackData", JSON.stringify(data.feedbacks));
     }
     fetchNotes();
   }, []);
