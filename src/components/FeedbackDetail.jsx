@@ -7,6 +7,10 @@ export default function FeedbackDetail() {
   const [feedbackId, setFeedbackId] = useState(getUrlParam());
   const [newComment, setNewComment] = useState(""); 
   const [charCount, setCharCount] = useState(250); 
+  // omer-start
+  const [replyTo, setReplyTo] = useState(null);
+  const [replyContent, setReplyContent] = useState("");
+  // omer-end
 
   useEffect(() => {
     const updateFeedback = () => {
