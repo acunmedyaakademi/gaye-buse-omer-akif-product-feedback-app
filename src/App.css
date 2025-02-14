@@ -549,7 +549,14 @@
   margin-left: 50px;
   margin-top: 10px;
   position: relative;
+  margin-left: 40px; /* Yanıtları biraz içeri al */
+  padding-left: 10px;
+  border-left: 2px solid #ccc; /* Görsel olarak ayrıştır */
 }
+
+
+
+
 /*omer-end*/
 
 
