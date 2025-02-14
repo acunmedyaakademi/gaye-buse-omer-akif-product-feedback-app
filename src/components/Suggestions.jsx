@@ -76,22 +76,20 @@ export default function Suggestions() {
       {!isEmpty ? (
       <ul className="feedbackList">
         {feedbacks.map((x) => (
-          <li className="feedback" key={x.id}>
+          <li onClick={() => {window.location.hash = `#/feedback-detail/${x.id}`}} className="feedback" key={x.id}>
             <h5
-              onClick={() => {
-                window.location.hash = `#/feedback-detail/${x.id}`; // 📌 Mobilde detay sayfasına git
-              }}
+             
             >
               {x.title}
             </h5>
             <p>{x.description}</p>
-            <p>{x.category}</p>
+            <h5>{x.category}</h5>
             <div className="button-flex">
-            <button>comments: {x.comments.length}</button>
             <button className="upvote-section" onClick={() => handleUpvotes(x.id)}>
               <img src="/svg/upvote-icon.svg" alt="" />
               <p>{x.upvotes}</p>
             </button>
+            <button>comments: {x.comments.length}</button>
             </div>
           </li>
         ))}
