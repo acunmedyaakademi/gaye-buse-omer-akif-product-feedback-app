@@ -63,7 +63,7 @@ export default function FeedbackDetail() {
         <div className="goBack" onClick={() => window.history.back()}>
           Go Back
         </div>
-        <button className="editBtn" onClick={() => (window.location.hash = `#/new-feedback/${feedbackId}`)}>Edit Feedback</button>
+        <button className="editBtn" onClick={() => (window.location.hash = `#/new-feedback`)}>Edit Feedback</button>
       </div>
 
       <div className="detailPageFeedback">
