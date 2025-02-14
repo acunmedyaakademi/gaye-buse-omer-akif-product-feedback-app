@@ -34,7 +34,7 @@ export default function Roadmap() {
           </div>
           <h5>Roadmap</h5>
         </div>
-        <button className="addFeedback">+ Add Feedback</button>
+        <button className="addFeedbackBtnRoadmap">+ Add Feedback</button>
       </div>
 
       {/* Kategori Seçimi */}

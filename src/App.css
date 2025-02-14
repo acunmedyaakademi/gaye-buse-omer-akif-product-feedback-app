@@ -78,28 +78,28 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 12px;
-}
 
-button {
-  background-color: #F2F4FF;
-  color: #4661E6;
-  font-weight: 600;
-  font-size: 13px;
-  line-height: 18.79px;
-  letter-spacing: 0px;
-  border: none;
-  padding: 5px 16px;
-  border-radius: 10px;
-}
-
-button:active,
-button:focus {
-  background-color: #4661E6;
-  color: #fff;
-}
-
-button:hover {
-  background-color: #CFD7FF;
+  button {
+    background-color: #F2F4FF;
+    color: #4661E6;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 18.79px;
+    letter-spacing: 0px;
+    border: none;
+    padding: 5px 16px;
+    border-radius: 10px;
+  }
+  
+  button:active,
+  button:focus {
+    background-color: #4661E6;
+    color: #fff;
+  }
+  
+  button:hover {
+    background-color: #CFD7FF;
+  }
 }
 
 
@@ -198,6 +198,7 @@ button:hover {
 
 .roadmapPageHeader {
   display: flex;
+  background-color: #373F68;
 }
 
 .roadmapNavigation ul{
