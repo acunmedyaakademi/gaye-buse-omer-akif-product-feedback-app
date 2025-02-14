@@ -4,7 +4,7 @@ import { FeedbackContext } from "./FeedbackContext";
 export default function Suggestions() {
   const { feedbacks, setFeedbacks } = useContext(FeedbackContext);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); 
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // Hamburger menü için state
 
   useEffect(() => {
     const handleResize = () => {
@@ -30,7 +30,7 @@ export default function Suggestions() {
       {isMobile ? (
         <div className="suggestionsPageHeader">
           <div className="headerText">
-            <h5>Deneme</h5>
+            <h5>Frontend Mentor</h5>
             <p>Feedback Board</p>
           </div>
           <div className="hamburger-menu">
@@ -82,13 +82,11 @@ export default function Suggestions() {
             </h5>
             <p>{x.description}</p>
             <p>{x.category}</p>
-            <div className="button-flex">
             <button>comments: {x.comments.length}</button>
             <button className="upvote-section" onClick={() => handleUpvotes(x.id)}>
               <img src="/svg/upvote-icon.svg" alt="" />
               <p>{x.upvotes}</p>
             </button>
-            </div>
           </li>
         ))}
       </ul>
