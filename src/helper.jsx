@@ -9,7 +9,8 @@ const routes = [
   { title: "Home", url: "/", component: <Suggestions /> },
   { title: "Roadmap", url: "/roadmap", component: <Roadmap /> },
   { title: "Categories", url: "/categories", component: <Categories /> },
-  { url: "/feedback-detail", component: <FeedbackDetail /> },   
+  { url: "/feedback-detail", component: <FeedbackDetail /> },
+  { url: "/roadmap/", component: <Roadmap /> },   
   { title: 'New Feedback', url: '/new-feedback', component: <NewFeedback /> },
 ];
 
@@ -23,6 +24,10 @@ export function getPage(url) {
 
   if (url.startsWith("/feedback-detail/")) {
     return { title: "Feedback Detail", component: <FeedbackDetail /> };
+  }
+
+  if (url.startsWith("/roadmap/")) {
+    return { title: "Roadmap Filtered", component: <Roadmap /> };
   }
 
   // if (url.startsWith("/tags/")) {
