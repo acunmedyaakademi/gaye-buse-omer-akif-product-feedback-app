@@ -71,8 +71,13 @@ export default function FeedbackDetail() {
         <p>{feedback.description}</p>
         <p>{feedback.category}</p>
         <div className="button-flex">
-          <button>comments: {feedback.comments.length}</button>
-          <button>{feedback.upvotes}</button>
+          <button className="comment-button">
+            <img src="/public/images/comment-icon.svg"/>
+            {feedback.comments.length}</button>
+          <button>
+           <img src="/public/images/upvote-icon.svg"/>
+            {feedback.upvotes}
+            </button>
         </div>
       </div>
 
