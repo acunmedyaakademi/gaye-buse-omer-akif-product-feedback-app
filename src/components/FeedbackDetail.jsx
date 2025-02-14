@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { FeedbackContext } from "./FeedbackContext";
+import { LeftSvg } from "../Svg";
 
 export default function FeedbackDetail() {
   const { feedbacks, setFeedbacks, isEdit, setEdit, currentFeedback, setCurrentFeedback } = useContext(FeedbackContext);
@@ -98,7 +99,7 @@ export default function FeedbackDetail() {
 
   function handleEditClick() {
     setEdit(true);
-    setCurrentFeedback(feedback); 
+    setCurrentFeedback(feedback);
     window.location.hash = "#/new-feedback";
   }
 
@@ -106,7 +107,8 @@ export default function FeedbackDetail() {
     <div className="detailPage">
       <div className="detailPageHeader">
         <div className="goBack" onClick={() => window.history.back()}>
-          Go Back
+          <LeftSvg />
+          <span>Go Back</span>
         </div>
         <button className="editBtn" onClick={handleEditClick}>Edit Feedback</button>
       </div>

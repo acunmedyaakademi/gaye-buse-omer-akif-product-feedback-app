@@ -96,7 +96,9 @@
   justify-content: space-between;
 }
 
-.goBack {
+/* gaye düzenleme başlangıç */
+
+.goBack, .goBack-new-edit-page {
   color: rgba(100, 113, 150, 1);
   font-weight: 700;
   font-size: 13px;
@@ -104,11 +106,37 @@
   letter-spacing: 0px;
 }
 
+.goBack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15.67px;
+}
+
+.goBack, .goBack-new-edit-page svg path {
+  stroke: #4661E6;
+}
+
+.goBack-new-edit-page {
+  display: flex;
+  align-items: center;
+  gap: 15.67px;
+  margin-bottom: 35px;
+}
+
 .editBtn {
   background-color: rgba(70, 97, 230, 1);
   color: white;
-  padding: 10px 16px;
+  padding: 10.5px 16px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 18.79px;
+  letter-spacing: 0px;
 }
+
+/* gaye düzenleme bitiş */
 
 .detailPageFeedback {
   background-color: white;
@@ -698,6 +726,11 @@
 
 /* gaye başlangıç */
 
+.new-feedback-container-inner {
+  max-width: 327px;
+  margin-inline: auto;
+}
+
 .add-icon {
   background: radial-gradient(
       128.88% 128.88% at 103.9% -10.39%,
@@ -742,8 +775,8 @@
   color : #3A4374;
 }
 
-.new-feedback-page,
-.edit-feedback-page {
+
+.new-feedback-page, .edit-feedback-page {
   max-width: 327px;
   margin-inline: auto;
   background-color: #fff;
@@ -763,7 +796,8 @@
   }
 }
 
-.new-feedback-form-section form {
+.new-feedback-form-section form, 
+.edit-feedback-form-section form{
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
@@ -790,6 +824,7 @@
   textarea {
     background-color: #f7f8fd;
     border: none;
+    border-radius: 5px;
     min-width: 279px;
     padding: 8px;
     font-size: 16px;
@@ -818,6 +853,7 @@
 
 .feedback-title,
 .category-part,
+.status-part,
 .feedback-detail-part,
 .btns-part {
   display: flex;
@@ -825,8 +861,8 @@
 }
 
 .btns-part {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 16px;
   margin-top: 16px;
 
@@ -839,8 +875,37 @@
     font-size: 13px;
     line-height: 18.79px;
     letter-spacing: 0px;
-    color: #f2f4fe;
+    color: #F2F4FE;
+    cursor: pointer;
   }
+}
+
+.btns-part-edit {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 16px;
+
+  button {
+    padding-block: 10.5px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 18.79px;
+    letter-spacing: 0px;
+    color: #F2F4FE;
+    cursor: pointer;
+  }
+}
+
+.btns-right-side {
+  display: grid;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.save-changes-btn {
+  grid-row: 1;
 }
 
 .add-feedback-btn,
@@ -849,13 +914,28 @@
 }
 
 .cancel-btn {
-  background-color: #3a4374;
+  background-color: #3A4374;
+  grid-row: 2;
 }
 
 .delete-btn {
-  background-color: #d73737;
+  background-color: #D73737;
+  grid-row: 3;
+  margin-top: 16px;
 }
 
+.add-feedback-btn:hover, 
+.save-changes-btn:hover {
+  background-color: #C75AF6;
+}
+
+.cancel-btn:hover {
+  background-color: #656EA3;
+}
+
+.delete-btn:hover {
+  background-color: #E98888;
+}
 .select-wrapper {
   position: relative;
   width: 100%;
@@ -889,9 +969,9 @@
   left: 0;
   width: 100%;
   background: white;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 5px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 10px 40px -7px #373F6859;
   z-index: 10;
   display: none;
 }
@@ -962,10 +1042,118 @@
   }
 
   /* buse bitiş */
+
+  /* gaye başlangıç */
+
+  .new-feedback-container-inner {
+    max-width: 540px;
+  }
+
+  .goBack, .goBack-new-edit-page {
+    font-size: 14px;
+    line-height: 20.23px;
+  }
+  
+  .goBack-new-edit-page {
+    margin-bottom: 40px;
+  }
+  
+  .editBtn {
+    font-size: 14px;
+    line-height: 20.23px;
+  }
+
+  .add-icon {
+    background: radial-gradient(128.88% 128.88% at 103.9% -10.39%, #E84D70 0%, #A337F6 53.09%, #28A7ED 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -20px;
+    left: 25px;
+  }
+  
+  .new-feedback-page, .edit-feedback-page {
+    padding-inline: 42px;
+    padding-bottom: 40px;
+    padding-top: 52px;
+
+    h2 {
+      font-size: 24px;
+      line-height: 34.68px;
+      letter-spacing: -0.33px;
+      color: #3A4374;
+      margin-bottom: 40px;
+    }
+  }
+  
+  .new-feedback-form-section form, 
+  .edit-feedback-form-section form {
+  
+    label {
+      font-size: 14px;
+      line-height: 20.23px;
+      letter-spacing: -0.19px;
+      margin-bottom: 2px;
+    }
+  
+    span {
+      font-size: 14px;
+      line-height: 20.23px;
+      margin-bottom: 16px;
+    }
+  
+    input, textarea {
+      padding: 13px 24px;
+    }
+    
+    textarea {
+      min-height: 98px;
+    }
+  }
+  
+  .btns-part {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 32px;
+  
+    button {
+      width: auto;
+      padding: 10.5px 24px;
+    }
+  }
+
+  .btns-part-edit {
+    display: flex;
+    justify-content: space-between;
+  
+    button {
+      padding: 10.5px 24px;
+      font-size: 14px;
+      line-height: 20.23px;
+    }
+  }
+
+  .delete-btn {
+    margin-top: 0;
+  }
+
+  .btns-right-side {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+  }
+  
+  .select-wrapper {
+    max-width: 456px;
+  }
+  /* gaye bitiş */
 }
 
 @media (width >= 1110px) {
-
   .page {
     max-width: 1110px;
     margin-inline: auto;
@@ -973,4 +1161,108 @@
   .roapmapContainer {
     padding: 78px 165px;
   }
+
+    /* gaye başlangıç */
+
+    .new-feedback-container-inner {
+      max-width: 540px;
+    }
+    
+    .goBack-new-edit-page {
+      margin-bottom: 40px;
+    }
+    
+    .editBtn {
+      font-size: 14px;
+      line-height: 20.23px;
+    }
+  
+    .add-icon {
+      background: radial-gradient(128.88% 128.88% at 103.9% -10.39%, #E84D70 0%, #A337F6 53.09%, #28A7ED 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: -20px;
+      left: 25px;
+    }
+    
+    .new-feedback-page, .edit-feedback-page {
+      padding-inline: 42px;
+      padding-bottom: 40px;
+      padding-top: 52px;
+  
+      h2 {
+        font-size: 24px;
+        line-height: 34.68px;
+        letter-spacing: -0.33px;
+        color: #3A4374;
+        margin-bottom: 40px;
+      }
+    }
+    
+    .new-feedback-form-section form, 
+    .edit-feedback-form-section form {
+    
+      label {
+        font-size: 14px;
+        line-height: 20.23px;
+        letter-spacing: -0.19px;
+        margin-bottom: 2px;
+      }
+    
+      span {
+        font-size: 14px;
+        line-height: 20.23px;
+        margin-bottom: 16px;
+      }
+    
+      input, textarea {
+        padding: 13px 24px;
+      }
+      
+      textarea {
+        min-height: 98px;
+      }
+    }
+    
+    .btns-part {
+      margin-top: 32px;
+    
+      button {
+        width: auto;
+        padding: 10.5px 24px;
+      }
+    }
+  
+    .btns-part-edit {
+      display: flex;
+      justify-content: space-between;
+    
+      button {
+        padding: 10.5px 24px;
+        font-size: 14px;
+        line-height: 20.23px;
+      }
+    }
+  
+    .delete-btn {
+      margin-top: 0;
+    }
+  
+    .btns-right-side {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+    }
+    
+    .select-wrapper {
+      max-width: 456px;
+    }
+    /* gaye bitiş */
 }
+
+
