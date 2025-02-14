@@ -8,6 +8,9 @@ export default function FeedbackDetail() {
   const [newComment, setNewComment] = useState("");
   const [charCount, setCharCount] = useState(250);
 
+  const [replyTo, setReplyTo] = useState(null);
+  const [replyContent, setReplyContent] = useState("");
+
   useEffect(() => {
     const updateFeedback = () => {
       const newFeedbackId = getUrlParam();
@@ -44,7 +47,8 @@ export default function FeedbackDetail() {
               author: "Anonymous",
               username: "@anonymous",
               content: newComment,
-              imageUrl: 'images/@anonymous.png'
+              imageUrl: 'images/@anonymous.png',
+                replies: [] 
             },
           ],
         }
@@ -52,9 +56,43 @@ export default function FeedbackDetail() {
     );
 
     setFeedbacks(updatedFeedbacks);
-    localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks)); // ✅ Local Storage'a kaydet
+    localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks)); 
     setNewComment("");
     setCharCount(250);
+  }
+
+  function handleReply(parentId) {
+    if (replyContent.trim() === "") return;
+    
+    const updatedFeedbacks = feedbacks.map((fb) =>
+      fb.id === feedback.id
+        ? {
+            ...fb,
+            comments: fb.comments.map((comment) =>
+              comment.id === parentId
+                ? {
+                    ...comment,
+                    replies: [
+                      ...(comment.replies || []),
+                      {
+                        id: Date.now(),
+                        author: "Anonymous",
+                        username: "@anonymous",
+                        content: replyContent,
+                        imageUrl: 'images/@anonymous.png',
+                      },
+                    ],
+                  }
+                : comment
+            ),
+          }
+        : fb
+    );
+
+    setFeedbacks(updatedFeedbacks);
+    localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks)); 
+    setReplyTo(null);
+    setReplyContent("");
   }
 
 
@@ -70,13 +108,13 @@ export default function FeedbackDetail() {
         <div className="goBack" onClick={() => window.history.back()}>
           Go Back
         </div>
-        <button className="editBtn" onClick={handleEditClick} >Edit Feedback</button>
+        <button className="editBtn">Edit Feedback</button>
       </div>
 
       <div className="detailPageFeedback">
         <h5>{feedback.title}</h5>
         <p>{feedback.description}</p>
-        <p>{feedback.category}</p>
+        <p className="feedbackCategory">{feedback.category}</p>
         <div className="button-flex">
           <button className="comment-button">
             <img src="/public/images/comment-icon.svg"/>
@@ -93,9 +131,49 @@ export default function FeedbackDetail() {
         <ul className="commentsList">
           {feedback.comments.map((comment) => (
             <li key={comment.id} className="comment">
-              <img src={`images/${comment.username}.png`} alt="" />
-              <p className="commentAuthor"><strong>{comment.author}</strong> <span>{comment.username}</span></p>
+              <div className="commentHeader">
+                <div className="authorSection">
+                  <div className="commentAuthor">
+                    <p>{comment.author}</p>
+                    <p>{comment.username}</p>
+                  </div>
+                </div>
+                <div className="replyBtnArea">
+                  <button className="replyBtn" onClick={() => setReplyTo(comment.id)}>Reply</button>
+                </div>
+              </div>
               <p>{comment.content}</p>
+
+              {replyTo === comment.id && (
+                <div className="ma">
+                  <textarea
+                    value={replyContent}
+                    onChange={(e) => setReplyContent(e.target.value)}
+                    maxLength={250}
+                    placeholder="Type your reply here..."
+                    required
+                  />
+                  <div className="replyFooter">
+                    <p>{250 - replyContent.length} Characters left</p>
+                    <button onClick={() => handleReply(comment.id)} disabled={replyContent.trim() === ""}>
+                      Post Reply
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {comment.replies && comment.replies.map((reply) => (
+                <div key={reply.id} className="reply">
+                  <img src={reply.imageUrl} alt="" className="commentAvatar" />
+                  <div className="replyContent">
+                    <p className="commentAuthor">
+                      <strong>{reply.author}</strong> 
+                      <span className="username">{reply.username}</span>
+                    </p>
+                    <p>{reply.content}</p>
+                  </div>
+                </div>
+              ))}
               <hr />
             </li>
           ))}
