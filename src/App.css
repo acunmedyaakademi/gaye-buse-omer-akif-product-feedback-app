@@ -777,8 +777,6 @@
 
 
 .new-feedback-page, .edit-feedback-page {
-  max-width: 327px;
-  margin-inline: auto;
   background-color: #fff;
   border-radius: 10px;
   padding-inline: 24px;
