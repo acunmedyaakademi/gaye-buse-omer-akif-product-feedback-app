@@ -90,9 +90,7 @@ export default function Suggestions() {
       <ul className="feedbackList">
         {feedbacks.map((x) => (
           <li onClick={() => {window.location.hash = `#/feedback-detail/${x.id}`}} className="feedback" key={x.id}>
-            <h5
-             
-            >
+            <h5>
               {x.title}
             </h5>
             <p>{x.description}</p>
