@@ -1,3 +1,4 @@
+import { LeftSvg } from "../Svg";
 import { FeedbackContext } from "./FeedbackContext";
 import { useContext, useEffect, useState } from "react";
 
@@ -30,32 +31,33 @@ export default function Roadmap() {
       <div className="roadmapPageHeader">
         <div className="roadmapGoBack">
           <div className="goBackBtnRoadmap" onClick={() => window.history.back()}>
-            Go Back
+            <LeftSvg />
+            <span>Go Back</span>
           </div>
           <h5>Roadmap</h5>
         </div>
-        <button className="addFeedback">+ Add Feedback</button>
+        <a href="#/new-feedback" className="addFeedbackBtnRoadmap">+ Add Feedback</a>
       </div>
 
       {/* Kategori Seçimi */}
-     {isMobile &&  
-     <div className="roadmapNavigation">
-        {uniqueCategories.length > 0 ? (
-          <ul>
-            {uniqueCategories.map((cat) => (
-              <li
-                className={`roadMapPageCategories ${selectedCategory === cat ? "active" : ""}`}
-                key={cat}
-                onClick={() => isMobile && setSelectedCategory(cat)} // Sadece mobilde kategori seçimini değiştir
-              >
-                {cat}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No categories available.</p>
-        )}
-      </div>}
+      {isMobile &&
+        <div className="roadmapNavigation">
+          {uniqueCategories.length > 0 ? (
+            <ul>
+              {uniqueCategories.map((cat) => (
+                <li
+                  className={`roadMapPageCategories ${selectedCategory === cat ? "active" : ""}`}
+                  key={cat}
+                  onClick={() => isMobile && setSelectedCategory(cat)} // Sadece mobilde kategori seçimini değiştir
+                >
+                  {cat}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No categories available.</p>
+          )}
+        </div>}
 
       {/* Filtrelenmiş Feedbackler */}
       <div className="filteredFeedbacks">

@@ -9,6 +9,11 @@
   }
 }
 
+
+/* akif baslangic */
+
+/* Main Page Component start */
+
 .feedbackList {
   padding-inline: 24px;
   margin-top: 32px;
@@ -39,6 +44,12 @@
   justify-content: space-between;
 }
 
+
+/* Main Page Component end */
+
+
+/* Detail Page Component start */
+
 .detailPage {
   padding: 24px;
 }
@@ -62,6 +73,56 @@
   color: white;
   padding: 10px 16px;
 }
+
+/* Empty-page start */
+
+.empty-page {
+  background-color: white;
+  margin-block: 32px 47px;
+  margin-inline: 24px;
+  padding-block: 76px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+  text-align: center;
+
+  h3 {
+    color: rgba(58, 67, 116, 1);
+    font-family: Jost;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26.01px;
+    letter-spacing: -0.25px;
+    margin-block: 39px 12px;
+  }
+
+  p {
+    color: rgba(100, 113, 150, 1);
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18.79px;
+    letter-spacing: 0px;
+    margin-bottom: 24px;
+    padding-inline: 24px;
+  }
+
+  button {
+    background-color: rgba(173, 31, 234, 1);
+    color: white;
+    padding: 16px 10.5px;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 18.79px;
+    border: none;
+    border-radius: 10px;
+  }
+}
+
+
+/* Detail Page Component end */
+
+/* akif bitiş */
 
 .detailPageFeedback {
   background-color: white;
@@ -159,94 +220,56 @@
   align-items: center;
   position: absolute;
   right: 24px;
-  top: 50px;
+  top: 60px;
   transform: translateY(-50%);
   z-index: 30;
-}
 
-.categories {
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 24px 18px 36px 24px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 12px;
-
-  button {
-    background-color: #F2F4FF;
-    color: #4661E6;
-    font-weight: 600;
-    font-size: 13px;
-    line-height: 18.79px;
-    letter-spacing: 0px;
-    border: none;
-    padding: 5px 16px;
+  .categories {
+    background-color: #fff;
     border-radius: 10px;
-  }
+    padding: 24px 18px 36px 24px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
   
-  button:active,
-  button:focus {
-    background-color: #4661E6;
-    color: #fff;
-  }
-  
-  button:hover {
-    background-color: #CFD7FF;
-  }
-}
-
-.roadmap {
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 19px 24px 24px;
-}
-
-.roadmap-head {
-  display: flex;
-  justify-content: space-between;
-
-  h3 {
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 26.01px;
-    letter-spacing: -0.25px;
-    color: #3A4374;
-  }
-
-  button {
-    font-weight: 600;
-    font-size: 13px;
-    line-height: 18.79px;
-    letter-spacing: 0px;
-    text-decoration: underline;
-    text-decoration-style: solid;
-    text-decoration-thickness: Auto;
-    color: #4661E6;
-    border: none;
-    background: none;
+    button {
+      background-color: #F2F4FF;
+      color: #4661E6;
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 18.79px;
+      letter-spacing: 0px;
+      border: none;
+      padding: 5px 16px;
+      border-radius: 10px;
+    }
+    
+    button:active,
+    button:focus {
+      background-color: #4661E6;
+      color: #fff;
+    }
+    
+    button:hover {
+      background-color: #CFD7FF;
+    }
   }
 }
 
-.roadmap-status {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding-top: 24px;
 
-  span {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 23.12px;
-    letter-spacing: 0px;
-    color: #647196;
-  }
-}
+
 
 .hamburger-menu-overlay.none,
 .hamburger-menu-content.none {
   display: none;
 }
+
+.hamburger-menu-overlay.block,
+.hamburger-menu-content.block {
+  display: block;
+}
+
 
 .commentsList {
   list-style: none;
@@ -338,14 +361,70 @@
 
 .roadmapPageHeader {
   display: flex;
+  background-color: #373f68;
+  padding: 26px 24px;
+  justify-content: space-between;
+
+  .addFeedbackBtnRoadmap {
+    font-family: Jost;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 18.79px;
+    letter-spacing: 0px;
+    color: #f2f4fe;
+    width: 134px;
+    height: 40px;
+    background-color: #ad1fea;
+    border-radius: 10px;
+    border: none;
+    align-self: center;
+  }
 }
 
-.roadmapNavigation ul{
-  display: flex;
-  padding: 0px;
-  list-style: none;
-  justify-content: space-between;
+.roadmapNavigation {
+  ul {
+    display: flex;
+    padding: 0px;
+    list-style: none;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+
+    li {
+      padding-block: 20px;
+    }
+  }
 }
+
+.roadmapGoBack {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  h5 {
+    font-family: Jost;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26.01px;
+    letter-spacing: -0.25px;
+    color: white;
+  }
+
+  .goBackBtnRoadmap {
+    display: flex;
+    align-items: center;
+    gap: 15.67px;
+
+    span {
+      font-family: Jost;
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 18.79px;
+      letter-spacing: 0px;
+      color: white;
+    }
+  }
+}
+
 
 /* buse bitiş */
 @media (width >= 768px) {

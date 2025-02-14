@@ -4,7 +4,10 @@ import { FeedbackContext } from "./FeedbackContext";
 export default function Suggestions() {
   const { feedbacks, setFeedbacks } = useContext(FeedbackContext);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
+
+  console.log(feedbacks);
 
   useEffect(() => {
     const handleResize = () => {
@@ -30,7 +33,7 @@ export default function Suggestions() {
       {isMobile ? (
         <div className="suggestionsPageHeader">
           <div className="headerText">
-            <h5>Deneme</h5>
+            <h5>Frontend Mentor</h5>
             <p>Feedback Board</p>
           </div>
           <div className="hamburger-menu">
@@ -70,6 +73,7 @@ export default function Suggestions() {
           </div>
         </div>
       )}
+      {!isEmpty ? (
       <ul className="feedbackList">
         {feedbacks.map((x) => (
           <li className="feedback" key={x.id}>
@@ -82,17 +86,22 @@ export default function Suggestions() {
             </h5>
             <p>{x.description}</p>
             <p>{x.category}</p>
-            <div className="button-flex">
             <button>comments: {x.comments.length}</button>
             <button className="upvote-section" onClick={() => handleUpvotes(x.id)}>
               <img src="/svg/upvote-icon.svg" alt="" />
               <p>{x.upvotes}</p>
             </button>
-            </div>
           </li>
         ))}
       </ul>
-
+      ) : (
+       <div className="empty-page"> 
+        <img src="/public/images/empty-page-icon.svg"/>
+        <h3>There is no feedback yet.</h3>
+        <p>Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.</p>
+        <button>+ Add Feedback</button>
+       </div>
+      )}
     </div>
   );
 }
