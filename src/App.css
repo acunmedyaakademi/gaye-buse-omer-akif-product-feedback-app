@@ -220,48 +220,56 @@
   align-items: center;
   position: absolute;
   right: 24px;
-  top: 50%;
+  top: 60px;
   transform: translateY(-50%);
   z-index: 30;
-}
 
-.categories {
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 24px 18px 36px 24px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 12px;
-
-  button {
-    background-color: #F2F4FF;
-    color: #4661E6;
-    font-weight: 600;
-    font-size: 13px;
-    line-height: 18.79px;
-    letter-spacing: 0px;
-    border: none;
-    padding: 5px 16px;
+  .categories {
+    background-color: #fff;
     border-radius: 10px;
-  }
+    padding: 24px 18px 36px 24px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
   
-  button:active,
-  button:focus {
-    background-color: #4661E6;
-    color: #fff;
-  }
-  
-  button:hover {
-    background-color: #CFD7FF;
+    button {
+      background-color: #F2F4FF;
+      color: #4661E6;
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 18.79px;
+      letter-spacing: 0px;
+      border: none;
+      padding: 5px 16px;
+      border-radius: 10px;
+    }
+    
+    button:active,
+    button:focus {
+      background-color: #4661E6;
+      color: #fff;
+    }
+    
+    button:hover {
+      background-color: #CFD7FF;
+    }
   }
 }
+
+
 
 
 .hamburger-menu-overlay.none,
 .hamburger-menu-content.none {
   display: none;
 }
+
+.hamburger-menu-overlay.block,
+.hamburger-menu-content.block {
+  display: block;
+}
+
 
 .commentsList {
   list-style: none;
