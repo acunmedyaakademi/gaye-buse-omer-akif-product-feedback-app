@@ -96,11 +96,13 @@ export default function Suggestions() {
             </h5>
             <p>{x.description}</p>
             <p>{x.category}</p>
+            <div className="button-flex">
             <button>comments: {x.comments.length}</button>
             <button className="upvote-section" onClick = {() => handleUpvotes(x.id)}>
               <img src="/svg/upvote-icon.svg" alt="" />
               <p>{x.upvotes}</p>
             </button>
+            </div>
           </li>
         ))}
       </ul>
