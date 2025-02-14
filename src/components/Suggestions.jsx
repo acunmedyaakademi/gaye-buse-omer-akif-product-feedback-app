@@ -2,13 +2,26 @@ import { useContext, useState, useEffect } from "react";
 import { FeedbackContext } from "./FeedbackContext";
 
 export default function Suggestions() {
+<<<<<<< HEAD
   const { feedbacks, setFeedbacks, isEdit, setEdit, currentFeedback, setCurrentFeedback } = useContext(FeedbackContext);
+=======
+  const {feedback, setFeedback } = useContext(FeedbackContext);
+>>>>>>> origin/omer
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [feedback, setFeedback] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
 
   console.log(feedbacks);
+
+  // useEffect(() => {
+  //   const storedData = localStorage.getItem("feedbackData");
+  //   storedData && setFeedback(JSON.parse(storedData));
+  // }, []);
+  
+  // useEffect(() => {
+  //   localStorage.setItem("feedbackData", JSON.stringify(feedback));
+  // }, [feedback]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -23,19 +36,28 @@ export default function Suggestions() {
   }
 
   function handleUpvotes(id) {
+<<<<<<< HEAD
     setFeedbacks(
       feedbacks.map((item) =>
         item.id === id ? { ...item, upvotes: item.upvotes + 1 } : item
+=======
+    setFeedback(
+      feedback.map((item) =>
+        item.id ===id ? {...item, upvotes : item.upvotes + 1 } : item
+>>>>>>> origin/omer
       )
     );
   };
 
+<<<<<<< HEAD
   function handleAddClick() {
     setEdit(false);
     setCurrentFeedback(feedback); 
     window.location.hash = "#/new-feedback";
   }
   
+=======
+>>>>>>> origin/omer
   return (
     <div className="suggestionsPage">
       {isMobile ? (
@@ -104,7 +126,14 @@ export default function Suggestions() {
               <p>{x.upvotes}</p>
             </button>
             <button>comments: {x.comments.length}</button>
+<<<<<<< HEAD
             </div>
+=======
+            <button className="upvote-section" onClick = {() => handleUpvotes(x.id)}>
+              <img src="/svg/upvote-icon.svg" alt="" />
+              <p>{x.upvotes}</p>
+            </button>
+>>>>>>> origin/omer
           </li>
         ))}
       </ul>

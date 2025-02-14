@@ -618,6 +618,31 @@
   left: 25px;
 }
 
+.upvote-section {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background-color: #F2F4FE;
+  border-style: none;
+  padding: 6px 14px;
+  cursor: pointer;
+
+}
+
+.upvote-section:hover {
+  background-color: #cfd7ff;
+  color : #3A4374;
+}
+
+.upvote-section p {
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 18.79px;
+  letter-spacing: -0.18px;
+  text-align: center;
+  color : #3A4374;
+}
+
 .new-feedback-page, .edit-feedback-page {
   max-width: 327px;
   margin-inline: auto;

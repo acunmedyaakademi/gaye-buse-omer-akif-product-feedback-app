@@ -13,7 +13,12 @@ export function FeedbackProvider({ children }) {
   useEffect(() => {
     async function fetchNotes() {
       const data = await fetch("data/data.json").then((r) => r.json());
+<<<<<<< HEAD
       setFeedbacks(data.feedbacks);
+=======
+      setFeedback(data.feedbacks);
+      localStorage.setItem("feedbackData", JSON.stringify(data.feedbacks));
+>>>>>>> origin/omer
     }
     fetchNotes();
   }, []);
