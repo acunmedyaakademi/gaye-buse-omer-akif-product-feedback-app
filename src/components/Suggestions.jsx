@@ -2,13 +2,12 @@ import { useContext, useState, useEffect } from "react";
 import { FeedbackContext } from "./FeedbackContext";
 
 export default function Suggestions() {
+
   const { feedbacks, setFeedbacks, isEdit, setEdit, currentFeedback, setCurrentFeedback } = useContext(FeedbackContext);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [feedback, setFeedback] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
-
-  console.log(feedbacks);
 
   useEffect(() => {
     const handleResize = () => {
@@ -104,6 +103,10 @@ export default function Suggestions() {
               <p>{x.upvotes}</p>
             </button>
             <button>comments: {x.comments.length}</button>
+            <button className="upvote-section" onClick = {() => handleUpvotes(x.id)}>
+              <img src="/svg/upvote-icon.svg" alt="" />
+              <p>{x.upvotes}</p>
+            </button>
             </div>
           </li>
         ))}
