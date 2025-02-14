@@ -48,7 +48,7 @@ export default function FeedbackDetail() {
               username: "@anonymous",
               content: newComment,
               imageUrl: 'images/@anonymous.png',
-                replies: [] // Yeni yorumun yanıtları başta boş
+                replies: [] 
             },
           ],
         }
@@ -128,10 +128,10 @@ export default function FeedbackDetail() {
             <li key={comment.id} className="comment">
               <div className="commentHeader">
                 <div className="authorSection">
-                  <p className="commentAuthor">
+                  <div className="commentAuthor">
                     <p>{comment.author}</p>
                     <p>{comment.username}</p>
-                  </p>
+                  </div>
                 </div>
                 <div className="replyBtnArea">
                   <button className="replyBtn" onClick={() => setReplyTo(comment.id)}>Reply</button>
