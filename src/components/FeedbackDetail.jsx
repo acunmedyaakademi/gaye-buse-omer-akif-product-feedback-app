@@ -106,7 +106,7 @@ export default function FeedbackDetail() {
       <div className="detailPageFeedback">
         <h5>{feedback.title}</h5>
         <p>{feedback.description}</p>
-        <p className="feedback-category">{feedback.category}</p>
+        <p className="feedbackCategory">{feedback.category}</p>
         <div className="button-flex">
           <button>comments: {feedback.comments.length}</button>
           <button>{feedback.upvotes}</button>
@@ -118,15 +118,21 @@ export default function FeedbackDetail() {
         <ul className="commentsList">
           {feedback.comments.map((comment) => (
             <li key={comment.id} className="comment">
-              <img src={comment.imageUrl} alt="" className="commentAvatar" />
-              <p className="commentAuthor">
-                <strong>{comment.author}</strong> <span>{comment.username}</span>
-              </p>
+              <div className="commentHeader">
+                <div className="authorSection">
+                  <p className="commentAuthor">
+                    <p>{comment.author}</p>
+                    <p>{comment.username}</p>
+                  </p>
+                </div>
+                <div className="replyBtnArea">
+                  <button className="replyBtn" onClick={() => setReplyTo(comment.id)}>Reply</button>
+                </div>
+              </div>
               <p>{comment.content}</p>
-              <button className="replyBtn" onClick={() => setReplyTo(comment.id)}>Reply</button>
 
               {replyTo === comment.id && (
-                <div className="replyArea">
+                <div className="m a">
                   <textarea
                     value={replyContent}
                     onChange={(e) => setReplyContent(e.target.value)}

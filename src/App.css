@@ -501,7 +501,7 @@
 
 
 /*omer-start*/
-.feedback-category{
+.feedbackCategory{
   background-color: #fff;
   color : #4661E6;
   font-weight: 600;
@@ -511,6 +511,9 @@
 
 }
 
+.commentHeader {
+  display: flex;
+}
 
 .replyBtn {
   border-style: none;
@@ -519,6 +522,7 @@
   cursor: pointer;
   margin-left: 10px;
   background-color: #fff;
+  margin-left : auto;
 }
 
 .replyArea {
@@ -526,6 +530,7 @@
   border-radius: 5px;
   padding: 10px;
   margin-top: 10px;
+  color : blue;
 }
 
 .replyArea textarea {
