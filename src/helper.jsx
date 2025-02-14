@@ -1,6 +1,5 @@
 import Suggestions from "./components/Suggestions";
 import Roadmap from "./components/Roadmap";
-import Categories from "./components/Categories";
 import FeedbackDetail from "./components/FeedbackDetail";
 import  NewFeedback  from "./components/NewFeedback";
 
@@ -8,7 +7,6 @@ import  NewFeedback  from "./components/NewFeedback";
 const routes = [
   { title: "Home", url: "/", component: <Suggestions /> },
   { title: "Roadmap", url: "/roadmap", component: <Roadmap /> },
-  { title: "Categories", url: "/categories", component: <Categories /> },
   { url: "/feedback-detail", component: <FeedbackDetail /> },
   { url: "/roadmap/", component: <Roadmap /> },   
   { title: 'New Feedback', url: '/new-feedback', component: <NewFeedback /> },

@@ -108,7 +108,7 @@ export default function FeedbackDetail() {
         <div className="goBack" onClick={() => window.history.back()}>
           Go Back
         </div>
-        <button className="editBtn">Edit Feedback</button>
+        <button className="editBtn" onClick={handleEditClick}>Edit Feedback</button>
       </div>
 
       <div className="detailPageFeedback">
