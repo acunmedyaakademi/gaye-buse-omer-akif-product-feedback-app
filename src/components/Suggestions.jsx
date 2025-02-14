@@ -2,8 +2,9 @@ import { useContext, useState, useEffect } from "react";
 import { FeedbackContext } from "./FeedbackContext";
 
 export default function Suggestions() {
-  const { feedbacks, setFeedbacks } = useContext(FeedbackContext);
+  const { feedbacks, setFeedbacks, isEdit, setEdit, currentFeedback, setCurrentFeedback } = useContext(FeedbackContext);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [feedback, setFeedback] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
 
@@ -28,6 +29,13 @@ export default function Suggestions() {
       )
     );
   };
+
+  function handleAddClick() {
+    setEdit(false);
+    setCurrentFeedback(feedback); 
+    window.location.hash = "#/new-feedback";
+  }
+  
   return (
     <div className="suggestionsPage">
       {isMobile ? (
@@ -68,8 +76,7 @@ export default function Suggestions() {
         </div>
 
         <div className="selection-area">
-          <a href="#/new-feedback">+ Add Feedback</a>
-
+           <button onClick={handleAddClick}>+ Add Feedback</button>
         </div>
         </>
       ) : (

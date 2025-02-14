@@ -2,9 +2,7 @@ import { useContext, useState } from "react";
 import { FeedbackContext } from "./FeedbackContext";
 
 export default function NewFeedback() {
-  const { feedbacks, setFeedbacks } = useContext(FeedbackContext);
-  const [isEdit, setEdit] = useState(false);
-  const [currentFeedback, setCurrentFeedback] = useState(null);
+  const { feedbacks, setFeedbacks, isEdit, setEdit, currentFeedback } = useContext(FeedbackContext);
   const [openDropdown, setOpenDropdown] = useState(null);
 
   const toggleDropdown = (dropdown) => {
@@ -54,7 +52,7 @@ export default function NewFeedback() {
           <div className="add-icon">
             <img src="/svg/edit-icon.svg" alt="Edit Icon" />
           </div>
-          <h2>Editing ‘Add a dark theme option’</h2>
+          <h2>Editing `{currentFeedback.title}`</h2>
           <div className="edit-feedback-form-section">
             <form autoComplete="off">
               {/* Feedback Title */}

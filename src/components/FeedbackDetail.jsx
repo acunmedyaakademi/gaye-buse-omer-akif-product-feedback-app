@@ -2,9 +2,9 @@ import { useContext, useEffect, useState } from "react";
 import { FeedbackContext } from "./FeedbackContext";
 
 export default function FeedbackDetail() {
-  const { feedbacks, setFeedbacks } = useContext(FeedbackContext);
-  const [feedback, setFeedback] = useState(null);
+  const { feedbacks, setFeedbacks, isEdit, setEdit, currentFeedback, setCurrentFeedback } = useContext(FeedbackContext);
   const [feedbackId, setFeedbackId] = useState(getUrlParam());
+  const [feedback, setFeedback] = useState(null);
   const [newComment, setNewComment] = useState("");
   const [charCount, setCharCount] = useState(250);
 
@@ -57,13 +57,20 @@ export default function FeedbackDetail() {
     setCharCount(250);
   }
 
+
+  function handleEditClick() {
+    setEdit(true);
+    setCurrentFeedback(feedback); 
+    window.location.hash = "#/new-feedback";
+  }
+
   return (
     <div className="detailPage">
       <div className="detailPageHeader">
         <div className="goBack" onClick={() => window.history.back()}>
           Go Back
         </div>
-        <button className="editBtn" onClick={() => (window.location.hash = `#/new-feedback`)}>Edit Feedback</button>
+        <button className="editBtn" onClick={handleEditClick} >Edit Feedback</button>
       </div>
 
       <div className="detailPageFeedback">
