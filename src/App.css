@@ -32,7 +32,7 @@
   justify-content: flex-end;
 }
 
-.selection-area a {
+.selection-area button {
   background-color: rgba(173, 31, 234, 1);
   color: white;
   padding: 10px 16px;
