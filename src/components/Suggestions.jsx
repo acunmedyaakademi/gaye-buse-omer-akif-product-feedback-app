@@ -31,6 +31,7 @@ export default function Suggestions() {
   return (
     <div className="suggestionsPage">
       {isMobile ? (
+          <>
         <div className="suggestionsPageHeader">
           <div className="headerText">
             <h5>Deneme</h5>
@@ -65,6 +66,12 @@ export default function Suggestions() {
             </div>
           </div>
         </div>
+
+        <div className="selection-area">
+          <a href="#/new-feedback">+ Add Feedback</a>
+
+        </div>
+        </>
       ) : (
         <div className="suggestionsPageHeader">
           <div className="headerText">
