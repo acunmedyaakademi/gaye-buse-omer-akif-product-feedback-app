@@ -5,8 +5,8 @@ export default function FeedbackDetail() {
   const { feedbacks, setFeedbacks } = useContext(FeedbackContext);
   const [feedback, setFeedback] = useState(null);
   const [feedbackId, setFeedbackId] = useState(getUrlParam());
-  const [newComment, setNewComment] = useState(""); 
-  const [charCount, setCharCount] = useState(250); 
+  const [newComment, setNewComment] = useState("");
+  const [charCount, setCharCount] = useState(250);
 
   useEffect(() => {
     const updateFeedback = () => {
@@ -36,25 +36,25 @@ export default function FeedbackDetail() {
     const updatedFeedbacks = feedbacks.map((fb) =>
       fb.id === feedback.id
         ? {
-            ...fb,
-            comments: [
-              ...fb.comments,
-              {
-                id: Date.now(),
-                author: "Anonymous", 
-                username: "@anonymous",
-                content: newComment,
-                imageUrl: 'images/@anonymous.png'
-              },
-            ],
-          }
+          ...fb,
+          comments: [
+            ...fb.comments,
+            {
+              id: Date.now(),
+              author: "Anonymous",
+              username: "@anonymous",
+              content: newComment,
+              imageUrl: 'images/@anonymous.png'
+            },
+          ],
+        }
         : fb
     );
 
     setFeedbacks(updatedFeedbacks);
     localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks)); // ✅ Local Storage'a kaydet
-    setNewComment(""); 
-    setCharCount(250); 
+    setNewComment("");
+    setCharCount(250);
   }
 
   return (
@@ -63,7 +63,7 @@ export default function FeedbackDetail() {
         <div className="goBack" onClick={() => window.history.back()}>
           Go Back
         </div>
-        <button className="editBtn">Edit Feedback</button>
+        <button className="editBtn" onClick={() => (window.location.hash = `#/new-feedback/${feedbackId}`)}>Edit Feedback</button>
       </div>
 
       <div className="detailPageFeedback">
@@ -71,8 +71,8 @@ export default function FeedbackDetail() {
         <p>{feedback.description}</p>
         <p>{feedback.category}</p>
         <div className="button-flex">
-        <button>comments: {feedback.comments.length}</button>
-        <button>{feedback.upvotes}</button>
+          <button>comments: {feedback.comments.length}</button>
+          <button>{feedback.upvotes}</button>
         </div>
       </div>
 
