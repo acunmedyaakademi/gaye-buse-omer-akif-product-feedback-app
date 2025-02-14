@@ -2,11 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import { FeedbackContext } from "./FeedbackContext";
 
 export default function FeedbackDetail() {
-  const { feedbacks, setFeedbacks } = useContext(FeedbackContext);
-  const [feedback, setFeedback] = useState(null);
+  const { feedbacks, setFeedbacks, isEdit, setEdit, currentFeedback, setCurrentFeedback } = useContext(FeedbackContext);
   const [feedbackId, setFeedbackId] = useState(getUrlParam());
-  const [newComment, setNewComment] = useState(""); 
-  const [charCount, setCharCount] = useState(250); 
+  const [feedback, setFeedback] = useState(null);
+  const [newComment, setNewComment] = useState("");
+  const [charCount, setCharCount] = useState(250);
+
   const [replyTo, setReplyTo] = useState(null);
   const [replyContent, setReplyContent] = useState("");
 
@@ -38,26 +39,26 @@ export default function FeedbackDetail() {
     const updatedFeedbacks = feedbacks.map((fb) =>
       fb.id === feedback.id
         ? {
-            ...fb,
-            comments: [
-              ...fb.comments,
-              {
-                id: Date.now(),
-                author: "Anonymous", 
-                username: "@anonymous",
-                content: newComment,
-                imageUrl: 'images/@anonymous.png',
+          ...fb,
+          comments: [
+            ...fb.comments,
+            {
+              id: Date.now(),
+              author: "Anonymous",
+              username: "@anonymous",
+              content: newComment,
+              imageUrl: 'images/@anonymous.png',
                 replies: [] // Yeni yorumun yanıtları başta boş
-              },
-            ],
-          }
+            },
+          ],
+        }
         : fb
     );
 
     setFeedbacks(updatedFeedbacks);
     localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks)); 
-    setNewComment(""); 
-    setCharCount(250); 
+    setNewComment("");
+    setCharCount(250);
   }
 
   function handleReply(parentId) {
@@ -92,6 +93,13 @@ export default function FeedbackDetail() {
     localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks)); 
     setReplyTo(null);
     setReplyContent("");
+  }
+
+
+  function handleEditClick() {
+    setEdit(true);
+    setCurrentFeedback(feedback); 
+    window.location.hash = "#/new-feedback";
   }
 
   return (
@@ -132,7 +140,7 @@ export default function FeedbackDetail() {
               <p>{comment.content}</p>
 
               {replyTo === comment.id && (
-                <div className="m a">
+                <div className="ma">
                   <textarea
                     value={replyContent}
                     onChange={(e) => setReplyContent(e.target.value)}

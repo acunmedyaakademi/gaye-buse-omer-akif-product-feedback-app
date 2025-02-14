@@ -4,6 +4,8 @@ export const FeedbackContext = createContext();
 
 export function FeedbackProvider({ children }) {
   const [feedbacks, setFeedbacks] = useState([]);
+  const [isEdit, setEdit] = useState(false);
+  const [currentFeedback, setCurrentFeedback] = useState(null);
   // const [selectedNotes, setSelectedNotes] = useState(() => {
   //   return JSON.parse(localStorage.getItem("archivedNotes")) || [];
   // });
@@ -25,7 +27,7 @@ export function FeedbackProvider({ children }) {
   // };
 
   return (
-    <FeedbackContext.Provider value={{ feedbacks, setFeedbacks }}>
+    <FeedbackContext.Provider value={{ feedbacks, setFeedbacks, isEdit, setEdit, currentFeedback, setCurrentFeedback }}>
       {children}
     </FeedbackContext.Provider>
   );
