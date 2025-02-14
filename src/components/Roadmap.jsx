@@ -6,24 +6,30 @@ export default function Roadmap() {
   const { feedbacks } = useContext(FeedbackContext);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
-  // Kategorileri al ve tekrarsız hale getir
-  const uniqueCategories = [...new Set(feedbacks.map((x) => x.category))];
+  // Statüleri al ve tekrarsız hale getir
+  const uniqueStatuses = [...new Set(feedbacks.map((x) => x.status))];
 
-  // Seçilen kategori ve filtrelenmiş feedbackler için state
-  const [selectedCategory, setSelectedCategory] = useState(getUrlParam() || (isMobile ? null : uniqueCategories[0]));
+  // Seçilen statü
+  const [selectedStatus, setSelectedStatus] = useState(getUrlParam() || (isMobile ? null : uniqueStatuses[0]));
 
   useEffect(() => {
-    // Ekran boyutu değiştikçe durumu güncelle
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
-      // Eğer ekran büyürse ilk kategoriyi seçili hale getir
       if (window.innerWidth >= 768) {
-        setSelectedCategory(uniqueCategories[0]);
+        setSelectedStatus(uniqueStatuses[0]);
       }
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [uniqueCategories]);
+  }, [uniqueStatuses]);
+
+  // Duruma göre CSS sınıfı belirleyen fonksiyon
+  const getStatusClass = (status) => {
+    if (status === "Planned") return "planned";
+    if (status === "InProgress") return "inProgress";
+    if (status === "Live") return "live";
+    return "";
+  };
 
   return (
     <div className="roadmapPageContainer">
@@ -40,46 +46,48 @@ export default function Roadmap() {
       </div>
 
       {/* Kategori Seçimi */}
-      {isMobile &&
+      {isMobile &&  
         <div className="roadmapNavigation">
-          {uniqueCategories.length > 0 ? (
-            <ul>
-              {uniqueCategories.map((cat) => (
-                <li
-                  className={`roadMapPageCategories ${selectedCategory === cat ? "active" : ""}`}
-                  key={cat}
-                  onClick={() => isMobile && setSelectedCategory(cat)} // Sadece mobilde kategori seçimini değiştir
-                >
-                  {cat}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No categories available.</p>
-          )}
-        </div>}
+          <ul>
+            {uniqueStatuses.map((status) => (
+              <li
+                key={status}
+                className={`roadMapPageCategories ${selectedStatus === status ? "active" : ""} ${getStatusClass(status)}`}
+                onClick={() => isMobile && setSelectedStatus(status)}
+              >
+                {status} ({feedbacks.filter(f => f.status === status).length})
+              </li>
+            ))}
+          </ul>
+        </div>
+      }
 
       {/* Filtrelenmiş Feedbackler */}
       <div className="filteredFeedbacks">
-        {uniqueCategories.map((category) => {
-          const filteredFeedbacks = feedbacks.filter((x) => x.category === category);
+        {uniqueStatuses.map((status) => {
+          const filteredFeedbacks = feedbacks.filter((x) => x.status === status);
           return (
-            (!isMobile || selectedCategory === category) && (
-              <div key={category} className="categorySection">
-                <h5>{category} Feedbacks</h5>
+            (!isMobile || selectedStatus === status) && (
+              <div key={status} className={`statusSection ${getStatusClass(status)}`}>
+                <h5>{status} ({filteredFeedbacks.length})</h5>
                 <ul>
-                  {filteredFeedbacks.length > 0 ? (
-                    filteredFeedbacks.map((feedback) => (
-                      <li className="feedbackItem" key={feedback.id}>
-                        <h5>{feedback.title}</h5>
-                        <p>{feedback.description}</p>
-                        <button>comments: {feedback.comments.length}</button>
+                  {filteredFeedbacks.map((feedback) => (
+                    <li key={feedback.id} className="feedbackItem">
+                      <h2 className="feedbackRoadmapPageStatus">
+                        <span></span>
+                        {status}
+                      </h2>
+                      <h5>{feedback.title}</h5>
+                      <p>{feedback.description}</p>
+                      <div className="roadmapFeedbackCategories">
+                        <h6>{feedback.category}</h6>
+                      </div>
+                      <div className="roadmapFeedbackBtns">
                         <button>{feedback.upvotes} Upvotes</button>
-                      </li>
-                    ))
-                  ) : (
-                    <p>No feedbacks available for this category.</p>
-                  )}
+                        <button>comments: {feedback.comments.length}</button>
+                      </div>
+                    </li>
+                  ))}
                 </ul>
               </div>
             )
