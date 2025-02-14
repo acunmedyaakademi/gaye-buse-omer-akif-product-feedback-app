@@ -7,9 +7,7 @@ export default function Suggestions() {
   const [feedback, setFeedback] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
-
-  console.log(feedbacks);
-
+  
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
