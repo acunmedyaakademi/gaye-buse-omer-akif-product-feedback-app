@@ -1,3 +1,4 @@
+import { LeftSvg } from "../Svg";
 import { FeedbackContext } from "./FeedbackContext";
 import { useContext, useEffect, useState } from "react";
 
@@ -30,7 +31,8 @@ export default function Roadmap() {
       <div className="roadmapPageHeader">
         <div className="roadmapGoBack">
           <div className="goBackBtnRoadmap" onClick={() => window.history.back()}>
-            Go Back
+            <LeftSvg />
+            <span>Go Back</span>
           </div>
           <h5>Roadmap</h5>
         </div>
