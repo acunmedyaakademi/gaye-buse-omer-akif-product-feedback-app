@@ -4,7 +4,10 @@ import { FeedbackContext } from "./FeedbackContext";
 export default function Suggestions() {
   const { feedbacks, setFeedbacks } = useContext(FeedbackContext);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
+
+  console.log(feedbacks);
 
   useEffect(() => {
     const handleResize = () => {
@@ -70,6 +73,7 @@ export default function Suggestions() {
           </div>
         </div>
       )}
+      {!isEmpty ? (
       <ul className="feedbackList">
         {feedbacks.map((x) => (
           <li className="feedback" key={x.id}>
@@ -92,7 +96,14 @@ export default function Suggestions() {
           </li>
         ))}
       </ul>
-
+      ) : (
+       <div className="empty-page"> 
+        <img src="/public/images/empty-page-icon.svg"/>
+        <h3>There is no feedback yet.</h3>
+        <p>Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.</p>
+        <button>+ Add Feedback</button>
+       </div>
+      )}
     </div>
   );
 }
