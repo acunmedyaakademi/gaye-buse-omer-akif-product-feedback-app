@@ -13,7 +13,6 @@ export default function Suggestions() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
   // Hamburger menüyü aç/kapat
   function hamburgerMenu() {
     setIsMenuOpen((prevState) => !prevState);
@@ -22,11 +21,10 @@ export default function Suggestions() {
   function handleUpvotes(id) {
     setFeedbacks(
       feedbacks.map((item) =>
-        item.id ===id ? {...item, upvotes : item.upvotes + 1 } : item
+        item.id === id ? { ...item, upvotes: item.upvotes + 1 } : item
       )
     );
   };
-
   return (
     <div className="suggestionsPage">
       {isMobile ? (
@@ -37,26 +35,14 @@ export default function Suggestions() {
           </div>
           <div className="hamburger-menu">
             <img
-              src={
-                isMenuOpen
-                  ? "svg/hamburgerCloseIcon.svg"
-                  : "svg/hamburgerIcon.svg"
-              }
+              src={isMenuOpen ? "svg/hamburgerCloseIcon.svg" : "svg/hamburgerIcon.svg"}
               alt="Hamburger Menu"
               onClick={hamburgerMenu}
               className={isMenuOpen ? "hamburger-icon-none" : ""}
             />
           </div>
-          <div
-            className={`hamburger-menu-overlay ${
-              isMenuOpen ? "block" : "none"
-            }`}
-          >
-            <div
-              className={`hamburger-menu-content ${
-                isMenuOpen ? "block" : "none"
-              }`}
-            >
+          <div className={`hamburger-menu-overlay ${isMenuOpen ? "block" : "none"}`}>
+            <div className={`hamburger-menu-content ${isMenuOpen ? "block" : "none"}`}>
               <div className="categories">
                 <button>All</button>
                 <button>UI</button>
@@ -98,7 +84,7 @@ export default function Suggestions() {
             <p>{x.category}</p>
             <div className="button-flex">
             <button>comments: {x.comments.length}</button>
-            <button className="upvote-section" onClick = {() => handleUpvotes(x.id)}>
+            <button className="upvote-section" onClick={() => handleUpvotes(x.id)}>
               <img src="/svg/upvote-icon.svg" alt="" />
               <p>{x.upvotes}</p>
             </button>
@@ -106,7 +92,7 @@ export default function Suggestions() {
           </li>
         ))}
       </ul>
-      
+
     </div>
   );
 }

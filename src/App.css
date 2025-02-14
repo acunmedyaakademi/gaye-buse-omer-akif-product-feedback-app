@@ -1,11 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 
 .suggestionsPageHeader {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  z-index: 30;
-  padding-inline: 24px;
   background: radial-gradient(128.88% 128.88% at 103.9% -10.39%, #E84D70 0%, #A337F6 53.09%, #28A7ED 100%);
 
   img {
@@ -182,30 +177,76 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 12px;
+
+  button {
+    background-color: #F2F4FF;
+    color: #4661E6;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 18.79px;
+    letter-spacing: 0px;
+    border: none;
+    padding: 5px 16px;
+    border-radius: 10px;
+  }
+  
+  button:active,
+  button:focus {
+    background-color: #4661E6;
+    color: #fff;
+  }
+  
+  button:hover {
+    background-color: #CFD7FF;
+  }
 }
 
-button {
-  background-color: #F2F4FF;
-  color: #4661E6;
-  font-weight: 600;
-  font-size: 13px;
-  line-height: 18.79px;
-  letter-spacing: 0px;
-  border: none;
-  padding: 5px 16px;
+.roadmap {
+  background-color: #fff;
   border-radius: 10px;
+  padding: 19px 24px 24px;
 }
 
-button:active,
-button:focus {
-  background-color: #4661E6;
-  color: #fff;
+.roadmap-head {
+  display: flex;
+  justify-content: space-between;
+
+  h3 {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26.01px;
+    letter-spacing: -0.25px;
+    color: #3A4374;
+  }
+
+  button {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 18.79px;
+    letter-spacing: 0px;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: Auto;
+    color: #4661E6;
+    border: none;
+    background: none;
+  }
 }
 
-button:hover {
-  background-color: #CFD7FF;
-}
+.roadmap-status {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 24px;
 
+  span {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 23.12px;
+    letter-spacing: 0px;
+    color: #647196;
+  }
+}
 
 .hamburger-menu-overlay.none,
 .hamburger-menu-content.none {
@@ -298,11 +339,32 @@ button:hover {
 
 /* omer bitis */
 
+/* buse başlangıç */
+
+.roadmapPageHeader {
+  display: flex;
+}
+
+.roadmapNavigation ul{
+  display: flex;
+  padding: 0px;
+  list-style: none;
+  justify-content: space-between;
+}
+
+/* buse bitiş */
 @media (width >= 768px) {
 
   .hamburger-menu-overlay, .hamburger-menu {
     display: none;
   }
+
+  /* buse başlangıç */
+  .filteredFeedbacks {
+    display: flex;
+  }
+
+  /* buse bitiş */
   
 }
 
