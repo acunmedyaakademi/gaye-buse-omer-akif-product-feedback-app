@@ -70,8 +70,10 @@ export default function FeedbackDetail() {
         <h5>{feedback.title}</h5>
         <p>{feedback.description}</p>
         <p>{feedback.category}</p>
+        <div className="button-flex">
         <button>comments: {feedback.comments.length}</button>
         <button>{feedback.upvotes}</button>
+        </div>
       </div>
 
       <div className="commentsSection">
@@ -82,6 +84,7 @@ export default function FeedbackDetail() {
               <img src={`images/${comment.username}.png`} alt="" />
               <p className="commentAuthor"><strong>{comment.author}</strong> <span>{comment.username}</span></p>
               <p>{comment.content}</p>
+              <hr />
             </li>
           ))}
         </ul>

@@ -6,6 +6,7 @@
 /* 2. Remove default margin */
 * {
   margin: 0;
+  padding: 0;
   transition: all 0.3s ease-in-out;
 }
 
@@ -14,7 +15,8 @@ body {
   line-height: 1.5;
   /* 4. Improve text rendering */
   -webkit-font-smoothing: antialiased;
-  font-family: 'Jost';
+  font-family: 'Jost', sans-serif;
+  background-color: rgba(247, 248, 253, 1);
 }
 
 /* 5. Improve media defaults */
@@ -52,4 +54,22 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+ul,ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+hr {
+  color:rgba(140, 146, 179, 1);
+  padding-inline: 24px;
+  margin-block: 24px;
 }
