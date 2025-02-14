@@ -3,27 +3,26 @@ import { useContext, useEffect, useState } from "react";
 
 export default function Roadmap() {
   const { feedbacks } = useContext(FeedbackContext);
-  
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
   // Kategorileri al ve tekrarsız hale getir
-  const uniqueCategories = [...new Set(feedbacks.map(x => x.category))];
+  const uniqueCategories = [...new Set(feedbacks.map((x) => x.category))];
 
   // Seçilen kategori ve filtrelenmiş feedbackler için state
-  const [category, setCategory] = useState(getUrlParam());
-  const [filteredFeedbacks, setFilteredFeedbacks] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(getUrlParam() || (isMobile ? null : uniqueCategories[0]));
 
   useEffect(() => {
-    // Seçilen kategori değiştiğinde filtreleme yap
-    const updateFeedbacks = () => {
-      const selectedCategory = getUrlParam();
-      setCategory(selectedCategory);
-      setFilteredFeedbacks(feedbacks.filter((x) => x.category === selectedCategory));
+    // Ekran boyutu değiştikçe durumu güncelle
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+      // Eğer ekran büyürse ilk kategoriyi seçili hale getir
+      if (window.innerWidth >= 768) {
+        setSelectedCategory(uniqueCategories[0]);
+      }
     };
-
-    window.addEventListener("hashchange", updateFeedbacks);
-    updateFeedbacks(); // Sayfa açıldığında da çalıştır
-
-    return () => window.removeEventListener("hashchange", updateFeedbacks);
-  }, [feedbacks]); // feedbacks değiştikçe yeniden hesapla
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [uniqueCategories]);
 
   return (
     <div className="roadmapPageContainer">
@@ -39,42 +38,51 @@ export default function Roadmap() {
       </div>
 
       {/* Kategori Seçimi */}
-      <div className="roadmapNavigation">
+     {isMobile &&  
+     <div className="roadmapNavigation">
         {uniqueCategories.length > 0 ? (
           <ul>
             {uniqueCategories.map((cat) => (
-              <li 
-                className={`roadMapPageCategories ${category === cat ? "active" : ""}`} 
+              <li
+                className={`roadMapPageCategories ${selectedCategory === cat ? "active" : ""}`}
                 key={cat}
-                onClick={() => window.location.hash = `/roadmap/${cat}`} // Seçili kategori değiştirildiğinde URL güncellenir
+                onClick={() => isMobile && setSelectedCategory(cat)} // Sadece mobilde kategori seçimini değiştir
               >
                 {cat}
               </li>
             ))}
           </ul>
         ) : (
-          <p>No tags available.</p>
+          <p>No categories available.</p>
         )}
-      </div>
+      </div>}
 
       {/* Filtrelenmiş Feedbackler */}
       <div className="filteredFeedbacks">
-        <h5>{category ? `${category} Feedbacks` : "All Feedbacks"}</h5>
-        <ul>
-          {filteredFeedbacks.length > 0 ? (
-            filteredFeedbacks.map((feedback) => (
-              <li className="feedbackItem" key={feedback.id}>
-                <h5>{feedback.title}</h5>
-                <p>{feedback.description}</p>
-                <p><strong>Category:</strong> {feedback.category}</p>
-                <button>comments: {feedback.comments.length}</button>
-                <button>{feedback.upvotes} Upvotes</button>
-              </li>
-            ))
-          ) : (
-            <p>No feedbacks available for this category.</p>
-          )}
-        </ul>
+        {uniqueCategories.map((category) => {
+          const filteredFeedbacks = feedbacks.filter((x) => x.category === category);
+          return (
+            (!isMobile || selectedCategory === category) && (
+              <div key={category} className="categorySection">
+                <h5>{category} Feedbacks</h5>
+                <ul>
+                  {filteredFeedbacks.length > 0 ? (
+                    filteredFeedbacks.map((feedback) => (
+                      <li className="feedbackItem" key={feedback.id}>
+                        <h5>{feedback.title}</h5>
+                        <p>{feedback.description}</p>
+                        <button>comments: {feedback.comments.length}</button>
+                        <button>{feedback.upvotes} Upvotes</button>
+                      </li>
+                    ))
+                  ) : (
+                    <p>No feedbacks available for this category.</p>
+                  )}
+                </ul>
+              </div>
+            )
+          );
+        })}
       </div>
     </div>
   );

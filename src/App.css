@@ -334,11 +334,32 @@
 
 /* omer bitis */
 
+/* buse başlangıç */
+
+.roadmapPageHeader {
+  display: flex;
+}
+
+.roadmapNavigation ul{
+  display: flex;
+  padding: 0px;
+  list-style: none;
+  justify-content: space-between;
+}
+
+/* buse bitiş */
 @media (width >= 768px) {
 
   .hamburger-menu-overlay, .hamburger-menu {
     display: none;
   }
+
+  /* buse başlangıç */
+  .filteredFeedbacks {
+    display: flex;
+  }
+
+  /* buse bitiş */
   
 }
 
