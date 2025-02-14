@@ -11,6 +11,7 @@ export default function Suggestions() {
   const [feedback, setFeedback] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
+<<<<<<< HEAD
 
   console.log(feedbacks);
 
@@ -23,6 +24,9 @@ export default function Suggestions() {
   //   localStorage.setItem("feedbackData", JSON.stringify(feedback));
   // }, [feedback]);
 
+=======
+  
+>>>>>>> buse-branch
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
