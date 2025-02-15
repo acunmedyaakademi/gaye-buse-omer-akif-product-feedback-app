@@ -252,10 +252,19 @@ export default function Suggestions() {
         <ul className="feedbackList">
           {isMobile
             ? sortedFeedbacks.map((x) => (
-                <li className="feedback" key={x.id} >
-                  <h5>{x.title}</h5>
-                  <p>{x.description}</p>
-                  <h6 className="feedbackCategory">{x.category}</h6>
+                <li className="feedback" key={x.id}>
+                  <h5 onClick={() => {
+                  setCurrentFeedback(x);
+                  window.location.hash = `#/feedback-detail/${x.id}`
+                }}>{x.title}</h5>
+                  <p onClick={() => {
+                  setCurrentFeedback(x);
+                  window.location.hash = `#/feedback-detail/${x.id}`
+                }}>{x.description}</p>
+                  <h6 className="feedbackCategory" onClick={() => {
+                  setCurrentFeedback(x);
+                  window.location.hash = `#/feedback-detail/${x.id}`
+                }}>{x.category}</h6>
                   <div className="button-flex">
                     <button
                       className="upvote-section"
@@ -269,7 +278,7 @@ export default function Suggestions() {
                   window.location.hash = `#/feedback-detail/${x.id}`;
                 }}>
                       <CommentIconSvg />
-                      <span>{x.comments.length}</span>
+                      <span>{x.comments?.length}</span>
                     </button>
                   </div>
                 </li>
@@ -303,7 +312,7 @@ export default function Suggestions() {
             Got a suggestion? Found a bug that needs to be squashed? We love
             hearing about new ideas to improve our app.
           </p>
-          <button>+ Add Feedback</button>
+          <button onClick={handleAddClick}>+ Add Feedback</button>
         </div>
       )}
     </div>

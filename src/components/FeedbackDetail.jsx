@@ -13,6 +13,10 @@ export default function FeedbackDetail() {
   const [replyContent, setReplyContent] = useState("");
 
   useEffect(() => {
+    console.log(feedbacks);
+  }, [feedbacks])
+
+  useEffect(() => {
     const updateFeedback = () => {
       const newFeedbackId = getUrlParam();
       setFeedbackId(newFeedbackId);

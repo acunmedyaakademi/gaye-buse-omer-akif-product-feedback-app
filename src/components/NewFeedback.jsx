@@ -8,6 +8,24 @@ export default function NewFeedback() {
   const [selectedCategory, setSelectedCategory] = useState("Feature");  // Varsayılan olarak "Feature"
   const [selectedStatus, setSelectedStatus] = useState("Suggestion");  // Varsayılan olarak "Suggestion"
 
+  console.log(feedbacks);
+
+
+  function handleSubmit(e){
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const formObj = Object.fromEntries(formData);
+    formObj.id = crypto.randomUUID();
+    formObj.upvotes = 0;
+    formObj.status = "Planned";
+    formObj.category = "Enhancement";
+    formObj.comments = [];
+    console.log(formObj);
+    setFeedbacks(prevFeedbacks => [formObj, ...prevFeedbacks]);
+    console.log(feedbacks);
+    window.location.hash = "/";
+  }
+
   const toggleDropdown = (dropdown) => {
     setOpenDropdown(openDropdown === dropdown ? null : dropdown);
   };
@@ -15,52 +33,21 @@ export default function NewFeedback() {
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
     setOpenDropdown(null);  // Seçim yapıldığında dropdown'ı kapat
+    console.log(selectedCategory);
   };
 
   const handleStatusSelect = (status) => {
     setSelectedStatus(status);
     setOpenDropdown(null);  // Seçim yapıldığında dropdown'ı kapat
-  };
-
-  const createFeedback = (e) => {
-    e.preventDefault();
-    const form = new FormData(e.target);
-    const formObj = Object.fromEntries(form);
-
-    const newFeedbackData = {
-      ...formObj,
-      id: crypto.randomUUID(),
-    };
-
-    setFeedbacks([...feedbacks, newFeedbackData]);
-    console.log("Yeni Feedback:", newFeedbackData);
-    e.target.reset();
-  };
-
-  const updatedFeedback = (e) => {
-    e.preventDefault();
-    const form = new FormData(e.target);
-    const formObj = Object.fromEntries(form);
-
-    const updatedFeedbackData = {
-      ...currentFeedback,
-      ...formObj,
-    };
-
-    setInvoiceData(invoiceData.map(feed => feed.id === currentFeedback.id ? updatedFeedbackData : feed));
-    console.log("Güncellenmiş Feedback:", updatedFeedbackData);
-
-    setEdit(false);
-    setCurrentFeedback(null);
-    e.target.reset();
+    console.log(selectedStatus);
   };
 
   return (
     <div className="new-feedback-container">
       <div className="new-feedback-container-inner">
-        <div className="goBack-new-edit-page" onClick={() => window.history.back()}>
+        <div className="goBack-new-edit-page">
           <LeftSvg />
-          <span>Go Back</span>
+        <a href="#/"><span>Go Back</span></a>
         </div>
         {isEdit ? (
           <div className="edit-feedback-page">
@@ -69,7 +56,7 @@ export default function NewFeedback() {
             </div>
             <h2>Editing '{currentFeedback.title}'</h2>
             <div className="edit-feedback-form-section">
-              <form autoComplete="off">
+              <form autoComplete="off" onSubmit={handleSubmit}>
                 {/* Feedback Title */}
                 <div className="feedback-title">
                   <label>Feedback Title</label>
@@ -149,8 +136,9 @@ export default function NewFeedback() {
             </div>
             <h2>Create New Feedback</h2>
             <div className="new-feedback-form-section">
-              <form autoComplete="off">
+              <form autoComplete="off" onSubmit={handleSubmit}>
                 {/* Feedback Title */}
+            <a href="/">goback</a>
                 <div className="feedback-title">
                   <label>Feedback Title</label>
                   <span>Add a short, descriptive headline</span>
@@ -185,13 +173,13 @@ export default function NewFeedback() {
                 <div className="feedback-detail-part">
                   <label htmlFor="feedback-detail">Feedback Detail</label>
                   <span>Include any specific comments on what should be improved, added, etc.</span>
-                  <textarea required />
+                  <textarea name="description" required />
                 </div>
 
                 {/* Buttons */}
                 <div className="btns-part">
-                  <button type="submit" className="add-feedback-btn">Add Feedback</button>
-                  <button type="button" className="cancel-btn">Cancel</button>
+                  <a href="#/"><button className="add-feedback-btn">Add Feedback</button></a>
+                 <a href="#/"><button type="button" className="cancel-btn">Cancel</button></a>
                 </div>
               </form>
             </div>
