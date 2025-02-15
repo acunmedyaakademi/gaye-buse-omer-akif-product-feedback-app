@@ -11,15 +11,14 @@
   justify-content: space-between;
   padding-inline: 24px;
   position: relative;
-  z-index: 12;
+  z-index: 100;
+  height: 72px;
 
   img {
     padding-block: 27px;
     cursor: pointer;
   }
 }
-
-
 
 /* akif baslangic */
 
@@ -30,10 +29,10 @@
   padding-inline: 24px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
-.selection-area button {
+.addFeedbackBtn {
   background-color: rgba(173, 31, 234, 1);
   color: white;
   padding: 10px 16px;
@@ -63,7 +62,6 @@
   font-size: 13px;
   line-height: 18.79px;
   letter-spacing: -0.18px;
-  padding: 6px 16px;
   background-color: white;
 }
 
@@ -95,7 +93,9 @@
   justify-content: space-between;
 }
 
-.goBack {
+/* gaye düzenleme başlangıç */
+
+.goBack, .goBack-new-edit-page {
   color: rgba(100, 113, 150, 1);
   font-weight: 700;
   font-size: 13px;
@@ -103,11 +103,37 @@
   letter-spacing: 0px;
 }
 
+.goBack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15.67px;
+}
+
+.goBack, .goBack-new-edit-page svg path {
+  stroke: #4661E6;
+}
+
+.goBack-new-edit-page {
+  display: flex;
+  align-items: center;
+  gap: 15.67px;
+  margin-bottom: 35px;
+}
+
 .editBtn {
   background-color: rgba(70, 97, 230, 1);
   color: white;
-  padding: 10px 16px;
+  padding: 10.5px 16px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 18.79px;
+  letter-spacing: 0px;
 }
+
+/* gaye düzenleme bitiş */
 
 .detailPageFeedback {
   background-color: white;
@@ -205,8 +231,8 @@
 
 .headerText {
   padding-block: 15px;
-  padding-inline: 24px;
   color: #ffffff;
+  width: 100%;
 
   h5 {
     font-weight: 700;
@@ -226,8 +252,9 @@
 .hamburger-menu-overlay.block::before {
   content: "";
   position: fixed;
+  z-index: 200;
   z-index: 10;
-  top: 0;
+  top: 72px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -236,7 +263,7 @@
 
 .hamburger-menu-content.block {
   position: absolute;
-  z-index: 20;
+  z-index: 300;
   height: 100vh;
   width: 271px;
   top: 72px;
@@ -248,15 +275,8 @@
 }
 
 .hamburger-menu {
-  width: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  right: 24px;
-  top: 60px;
-  transform: translateY(-50%);
-  z-index: 30;
+  position: relative;
+  z-index: 400;
 
   .categories {
     background-color: #fff;
@@ -367,6 +387,7 @@
   background-color: #f2f4fe;
   border-style: none;
   padding: 6px 14px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
@@ -483,16 +504,16 @@
       align-items: center;
       gap: 15.67px;
 
-    span {
-      font-family: Jost;
-      font-weight: 700;
-      font-size: 13px;
-      line-height: 18.79px;
-      letter-spacing: 0px;
-      color: white;
+      span {
+        font-family: Jost;
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 18.79px;
+        letter-spacing: 0px;
+        color: white;
+      }
     }
   }
-}
 
   .filteredFeedbacks {
     padding: 24px;
@@ -586,7 +607,8 @@
               align-items: center;
               gap: 10px;
               background-color: #f2f4fe;
-              padding: 6px 13px;
+              width: 69px;
+              height: 32px;
               border: none;
               border-radius: 10px;
             }
@@ -646,6 +668,47 @@
   }
 }
 
+.commentsBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  padding: 5px;
+  background-color: transparent;
+}
+
+.sort-button {
+  display: flex;
+  background-color: transparent;
+  align-items: center;
+  gap: 9px;
+  border: none;
+  font-family: Jost;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20.23px;
+  letter-spacing: 0px;
+  color: rgba(242, 244, 254, 0.75);
+
+  span {
+    font-weight: 700;
+  }
+
+  .upIcon {
+    color: #ffffff;
+  }
+
+  .downIcon {
+    color: #ffffff;
+  }
+}
+
+.selectedOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 /* buse bitiş */
 
 /*omer-start*/
@@ -667,12 +730,12 @@
 
 .replyBtn {
   border-style: none;
-  color: #4661E6;
+  color: #4661e6;
   font-weight: bold;
   cursor: pointer;
   margin-left: 10px;
   background-color: #fff;
-  margin-left : auto;
+  margin-left: auto;
 }
 
 .replyArea {
@@ -680,7 +743,7 @@
   border-radius: 5px;
   padding: 10px;
   margin-top: 10px;
-  color : blue;
+  color: blue;
 }
 
 .replyArea textarea {
@@ -707,6 +770,11 @@
 
 /* gaye başlangıç */
 
+.new-feedback-container-inner {
+  max-width: 327px;
+  margin-inline: auto;
+}
+
 .add-icon {
   background: radial-gradient(
       128.88% 128.88% at 103.9% -10.39%,
@@ -728,18 +796,18 @@
 
 .upvote-section {
   display: flex;
-  gap: 10px;
   align-items: center;
-  background-color: #F2F4FE;
-  border-style: none;
-  padding: 6px 14px;
-  cursor: pointer;
-
+  gap: 10px;
+  background-color: #f2f4fe;
+  width: 69px;
+  height: 32px;
+  border: none;
+  border-radius: 10px;
 }
 
 .upvote-section:hover {
   background-color: #cfd7ff;
-  color : #3A4374;
+  color: #3a4374;
 }
 
 .upvote-section p {
@@ -748,8 +816,9 @@
   line-height: 18.79px;
   letter-spacing: -0.18px;
   text-align: center;
-  color : #3A4374;
+  color: #3a4374;
 }
+
 
 .new-feedback-page,
 .edit-feedback-page {
@@ -772,7 +841,8 @@
   }
 }
 
-.new-feedback-form-section form {
+.new-feedback-form-section form, 
+.edit-feedback-form-section form{
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
@@ -799,6 +869,7 @@
   textarea {
     background-color: #f7f8fd;
     border: none;
+    border-radius: 5px;
     min-width: 279px;
     padding: 8px;
     font-size: 16px;
@@ -809,7 +880,7 @@
     letter-spacing: 0px;
     color: #3a4374;
   }
-  
+
   input {
     min-height: 48px;
   }
@@ -827,6 +898,7 @@
 
 .feedback-title,
 .category-part,
+.status-part,
 .feedback-detail-part,
 .btns-part {
   display: flex;
@@ -834,8 +906,8 @@
 }
 
 .btns-part {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 16px;
   margin-top: 16px;
 
@@ -848,8 +920,37 @@
     font-size: 13px;
     line-height: 18.79px;
     letter-spacing: 0px;
-    color: #f2f4fe;
+    color: #F2F4FE;
+    cursor: pointer;
   }
+}
+
+.btns-part-edit {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 16px;
+
+  button {
+    padding-block: 10.5px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 18.79px;
+    letter-spacing: 0px;
+    color: #F2F4FE;
+    cursor: pointer;
+  }
+}
+
+.btns-right-side {
+  display: grid;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.save-changes-btn {
+  grid-row: 1;
 }
 
 .add-feedback-btn,
@@ -858,13 +959,28 @@
 }
 
 .cancel-btn {
-  background-color: #3a4374;
+  background-color: #3A4374;
+  grid-row: 2;
 }
 
 .delete-btn {
-  background-color: #d73737;
+  background-color: #D73737;
+  grid-row: 3;
+  margin-top: 16px;
 }
 
+.add-feedback-btn:hover, 
+.save-changes-btn:hover {
+  background-color: #C75AF6;
+}
+
+.cancel-btn:hover {
+  background-color: #656EA3;
+}
+
+.delete-btn:hover {
+  background-color: #E98888;
+}
 .select-wrapper {
   position: relative;
   width: 100%;
@@ -892,20 +1008,43 @@
   }
 }
 
+.dropdown {
+  position: absolute;
+  background-color: white;
+  top: 120px;
+  border-radius: 10px;
+  width: 50%;
+  max-width: 255px;
+
+  li {
+    font-family: Jost;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 23.12px;
+    letter-spacing: 0px;
+    color: #647196;
+    padding: 12px 24px;
+    border-bottom: 1px solid rgba(58, 67, 116, 0.15);
+  }
+}
+
+.dropdown li:last-child {
+  border-bottom: none;
+}
+
 .dropdown-options {
   position: absolute;
   top: 65px;
   left: 0;
   width: 100%;
-  background: white;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 10px 40px -7px #373F6859;
   z-index: 10;
   display: none;
 }
 
-.select-wrapper.active .dropdown-options {
+.select-wrapper.active .dropdown li {
   display: block;
 }
 
@@ -945,36 +1084,358 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
     }
-    
+
     .statusSection {
       display: flex;
       flex-direction: column;
       gap: 10px;
       width: 100%;
     }
-    
+
     .feedbackItem {
       display: flex;
       flex-direction: column;
       background-color: white;
       border: 1px solid #ccc;
       padding: 20px;
-      box-sizing: border-box; 
-      min-height: 200px; 
-      height: 100%; 
+      box-sizing: border-box;
+      min-height: 200px;
+      height: 100%;
     }
 
     .filteredFeedbacks {
       align-items: stretch;
     }
+  }
+
+  .suggestionsPage {
+    padding: 56px 40px;
+  }
+
+  .selection-area {
+    border-radius: 10px;
+  }
+
+  .selection-area-text {
+    display: flex;
+    gap: 16px;
+
+    p {
+      display: flex;
+      font-family: Jost;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 26.01px;
+      letter-spacing: -0.25px;
+      color: white;
+    }
+  }
+
+  .tabletHeaderSection {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+
+  .tabletHeaderTextBox {
+    background: radial-gradient(
+      128.88% 128.88% at 103.9% -10.39%,
+      #e84d70 0%,
+      #a337f6 53.09%,
+      #28a7ed 100%
+    );
+    height: 178px;
+    width: 33%;
+    display: flex;
+    align-items: end;
+    padding: 24px;
+    border-radius: 10px;
+
+    h5 {
+      font-family: Jost;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 28.9px;
+      letter-spacing: -0.25px;
+      color: white;
+    }
+
+    p {
+      font-family: Jost;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 21.68px;
+      letter-spacing: 0px;
+      color: white;
+    }
+  }
+
+  .tabletCategoriesBox {
+    width: 33%;
+    padding: 24px;
+    background-color: #ffffff;
+    border-radius: 10px;
+
+    .tabletCategories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+
+      button {
+        font-family: Jost;
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 18.79px;
+        letter-spacing: 0px;
+        background-color: #f2f4ff;
+        color: #4661e6;
+        padding: 5px 16px;
+        border: none;
+        border-radius: 10px;
+      }
+
+      button.active {
+        background-color: #4661e6;
+        color: white;
+      }
+    }
+  }
+
+  .tabletRoadmapBox {
+    width: 33%;
+    padding: 19px 24px;
+    background-color: white;
+    border-radius: 10px;
+
+    .tabletRoadmapBoxHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+
+      h6 {
+        font-family: Jost;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 26.01px;
+        letter-spacing: -0.25px;
+        color: #3a4374;
+      }
+
+      a {
+        font-family: Jost;
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 18.79px;
+        letter-spacing: 0px;
+        text-decoration: underline;
+        text-decoration-style: solid;
+        text-decoration-thickness: Auto;
+        color: #4661e6;
+      }
+    }
+    ul {
+      .inProgress span {
+        background-color: #ad1fea;
+      }
+
+      .planned span {
+        background-color: #f49f85;
+      }
+
+      .live span {
+        background-color: #62bcfa;
+      }
+
+      li {
+        display: flex;
+        justify-content: space-between;
+
+        p {
+          font-family: Jost;
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 23.12px;
+          letter-spacing: 0px;
+          text-align: right;
+          color: #647196;
+        }
+
+        h6 {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          font-family: Jost;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 23.12px;
+          letter-spacing: 0px;
+          color: #647196;
+
+          span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+
+  .feedback-tablet {
+    display: flex;
     
+    .upvote-section {
+      display: flex;
+      flex-direction: column;
+      width: 40px;
+      height: 53px;
+      margin-right: 40px;
+    }
+
+    .feedbackText {
+      margin-right: auto;
+      align-items: center;
+
+      p {
+        font-family: Jost;
+font-weight: 400;
+font-size: 16px;
+line-height: 23.12px;
+letter-spacing: 0px;
+color: #647196;
+      }
+
+      h5 {
+        font-family: Jost;
+font-weight: 700;
+font-size: 18px;
+line-height: 26.01px;
+letter-spacing: -0.25px;
+color: #3A4374;
+      }
+    }
+  }
+
+  .feedback {
+    padding: 28px 32px;
   }
 
   /* buse bitiş */
+
+  /* gaye başlangıç */
+
+  .new-feedback-container-inner {
+    max-width: 540px;
+  }
+
+  .goBack, .goBack-new-edit-page {
+    font-size: 14px;
+    line-height: 20.23px;
+  }
+  
+  .goBack-new-edit-page {
+    margin-bottom: 40px;
+  }
+  
+  .editBtn {
+    font-size: 14px;
+    line-height: 20.23px;
+  }
+
+  .add-icon {
+    background: radial-gradient(128.88% 128.88% at 103.9% -10.39%, #E84D70 0%, #A337F6 53.09%, #28A7ED 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -20px;
+    left: 25px;
+  }
+  
+  .new-feedback-page, .edit-feedback-page {
+    padding-inline: 42px;
+    padding-bottom: 40px;
+    padding-top: 52px;
+
+    h2 {
+      font-size: 24px;
+      line-height: 34.68px;
+      letter-spacing: -0.33px;
+      color: #3A4374;
+      margin-bottom: 40px;
+    }
+  }
+  
+  .new-feedback-form-section form, 
+  .edit-feedback-form-section form {
+  
+    label {
+      font-size: 14px;
+      line-height: 20.23px;
+      letter-spacing: -0.19px;
+      margin-bottom: 2px;
+    }
+  
+    span {
+      font-size: 14px;
+      line-height: 20.23px;
+      margin-bottom: 16px;
+    }
+  
+    input, textarea {
+      padding: 13px 24px;
+    }
+    
+    textarea {
+      min-height: 98px;
+    }
+  }
+  
+  .btns-part {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 32px;
+  
+    button {
+      width: auto;
+      padding: 10.5px 24px;
+    }
+  }
+
+  .btns-part-edit {
+    display: flex;
+    justify-content: space-between;
+  
+    button {
+      padding: 10.5px 24px;
+      font-size: 14px;
+      line-height: 20.23px;
+    }
+  }
+
+  .delete-btn {
+    margin-top: 0;
+  }
+
+  .btns-right-side {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+  }
+  
+  .select-wrapper {
+    max-width: 456px;
+  }
+  /* gaye bitiş */
 }
 
 @media (width >= 1110px) {
-
   .page {
     max-width: 1110px;
     margin-inline: auto;
@@ -982,4 +1443,108 @@
   .roapmapContainer {
     padding: 78px 165px;
   }
+
+    /* gaye başlangıç */
+
+    .new-feedback-container-inner {
+      max-width: 540px;
+    }
+    
+    .goBack-new-edit-page {
+      margin-bottom: 40px;
+    }
+    
+    .editBtn {
+      font-size: 14px;
+      line-height: 20.23px;
+    }
+  
+    .add-icon {
+      background: radial-gradient(128.88% 128.88% at 103.9% -10.39%, #E84D70 0%, #A337F6 53.09%, #28A7ED 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: -20px;
+      left: 25px;
+    }
+    
+    .new-feedback-page, .edit-feedback-page {
+      padding-inline: 42px;
+      padding-bottom: 40px;
+      padding-top: 52px;
+  
+      h2 {
+        font-size: 24px;
+        line-height: 34.68px;
+        letter-spacing: -0.33px;
+        color: #3A4374;
+        margin-bottom: 40px;
+      }
+    }
+    
+    .new-feedback-form-section form, 
+    .edit-feedback-form-section form {
+    
+      label {
+        font-size: 14px;
+        line-height: 20.23px;
+        letter-spacing: -0.19px;
+        margin-bottom: 2px;
+      }
+    
+      span {
+        font-size: 14px;
+        line-height: 20.23px;
+        margin-bottom: 16px;
+      }
+    
+      input, textarea {
+        padding: 13px 24px;
+      }
+      
+      textarea {
+        min-height: 98px;
+      }
+    }
+    
+    .btns-part {
+      margin-top: 32px;
+    
+      button {
+        width: auto;
+        padding: 10.5px 24px;
+      }
+    }
+  
+    .btns-part-edit {
+      display: flex;
+      justify-content: space-between;
+    
+      button {
+        padding: 10.5px 24px;
+        font-size: 14px;
+        line-height: 20.23px;
+      }
+    }
+  
+    .delete-btn {
+      margin-top: 0;
+    }
+  
+    .btns-right-side {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+    }
+    
+    .select-wrapper {
+      max-width: 456px;
+    }
+    /* gaye bitiş */
 }
+
+
