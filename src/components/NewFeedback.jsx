@@ -3,28 +3,32 @@ import { FeedbackContext } from "./FeedbackContext";
 import { LeftSvg } from "../Svg";
 
 export default function NewFeedback() {
-  const { feedbacks, setFeedbacks, isEdit, setEdit, currentFeedback } = useContext(FeedbackContext);
+  const { feedbacks, setFeedbacks, isEdit, setEdit, currentFeedback, setCurrentFeedback } = useContext(FeedbackContext);
   const [openDropdown, setOpenDropdown] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("Feature");  // Varsayılan olarak "Feature"
   const [selectedStatus, setSelectedStatus] = useState("Suggestion");  // Varsayılan olarak "Suggestion"
 
-  console.log(feedbacks);
-
-
-  function handleSubmit(e){
+  function handleSubmit(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const formObj = Object.fromEntries(formData);
-    formObj.id = crypto.randomUUID();
+  
+    formObj.id = crypto.randomUUID(); 
     formObj.upvotes = 0;
     formObj.status = "Planned";
-    formObj.category = "Enhancement";
+    formObj.category = selectedCategory;
     formObj.comments = [];
-    console.log(formObj);
-    setFeedbacks(prevFeedbacks => [formObj, ...prevFeedbacks]);
-    console.log(feedbacks);
-    window.location.hash = "/";
+    
+    setFeedbacks(prevFeedbacks => {
+      const updatedFeedbacks = [formObj, ...prevFeedbacks];
+      localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks)); 
+      return updatedFeedbacks;
+    });
+  
+    setCurrentFeedback(formObj);
+    window.location.hash = `#/`;
   }
+  
 
   const toggleDropdown = (dropdown) => {
     setOpenDropdown(openDropdown === dropdown ? null : dropdown);
@@ -33,13 +37,11 @@ export default function NewFeedback() {
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
     setOpenDropdown(null);  // Seçim yapıldığında dropdown'ı kapat
-    console.log(selectedCategory);
   };
 
   const handleStatusSelect = (status) => {
     setSelectedStatus(status);
     setOpenDropdown(null);  // Seçim yapıldığında dropdown'ı kapat
-    console.log(selectedStatus);
   };
 
   return (
@@ -138,7 +140,6 @@ export default function NewFeedback() {
             <div className="new-feedback-form-section">
               <form autoComplete="off" onSubmit={handleSubmit}>
                 {/* Feedback Title */}
-            <a href="/">goback</a>
                 <div className="feedback-title">
                   <label>Feedback Title</label>
                   <span>Add a short, descriptive headline</span>

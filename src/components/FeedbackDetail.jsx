@@ -13,16 +13,11 @@ export default function FeedbackDetail() {
   const [replyContent, setReplyContent] = useState("");
 
   useEffect(() => {
-    console.log(feedbacks);
-  }, [feedbacks])
-
-  useEffect(() => {
     const updateFeedback = () => {
       const newFeedbackId = getUrlParam();
       setFeedbackId(newFeedbackId);
       const storedFeedbacks = JSON.parse(localStorage.getItem("feedbacks")) || feedbacks;
-
-      const foundFeedback = storedFeedbacks.find((x) => x.id === Number(newFeedbackId));
+      const foundFeedback = storedFeedbacks.find((x) => x.id.toString() === newFeedbackId);
       setFeedback(foundFeedback);
     };
 
@@ -163,6 +158,7 @@ export default function FeedbackDetail() {
     <li key={comment.id} className="comment">
       <div className="commentHeader">
         <div className="authorSection">
+          <img src={`images/${comment.username}.png`} alt="" />
           <div className="commentAuthor">
             <p className="commentAuthorName">{comment.author}</p>
             <p className="commentAuthorUserName">{comment.username}</p>

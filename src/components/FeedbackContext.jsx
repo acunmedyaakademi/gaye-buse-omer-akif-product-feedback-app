@@ -9,7 +9,6 @@ export function FeedbackProvider({ children }) {
   // const [selectedNotes, setSelectedNotes] = useState(() => {
   //   return JSON.parse(localStorage.getItem("archivedNotes")) || [];
   // });
-  console.log(children)
   useEffect(() => {
     async function fetchNotes() {
       const data = await fetch("data/data.json").then((r) => r.json());

@@ -292,12 +292,18 @@ export default function Suggestions() {
                     <img src="/svg/upvote-icon.svg" alt="" />
                     <p>{x.upvotes}</p>
                   </button>
-                  <div className="feedbackText">
+                  <div className="feedbackText" onClick={() => {
+                  setCurrentFeedback(x);
+                  window.location.hash = `#/feedback-detail/${x.id}`;
+                }}>
                     <h5>{x.title}</h5>
                     <p>{x.description}</p>
                     <h6 className="feedbackCategory">{x.category}</h6>
                   </div>
-                  <button className="commentsBtn">
+                  <button className="commentsBtn" onClick={() => {
+                  setCurrentFeedback(x);
+                  window.location.hash = `#/feedback-detail/${x.id}`;
+                }}>
                     <CommentIconSvg />
                     <span>{x.comments.length}</span>
                   </button>
