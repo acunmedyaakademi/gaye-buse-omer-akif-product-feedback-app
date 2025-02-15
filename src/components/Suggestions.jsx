@@ -7,6 +7,7 @@ import {
   TickIconSvg,
   UpIconSvg,
 } from "../Svg";
+import FeedbackDetail from "./FeedbackDetail";
 
 export default function Suggestions() {
   const {
@@ -251,7 +252,7 @@ export default function Suggestions() {
         <ul className="feedbackList">
           {isMobile
             ? sortedFeedbacks.map((x) => (
-                <li className="feedback" key={x.id}>
+                <li className="feedback" key={x.id} >
                   <h5>{x.title}</h5>
                   <p>{x.description}</p>
                   <h6 className="feedbackCategory">{x.category}</h6>
@@ -263,7 +264,10 @@ export default function Suggestions() {
                       <img src="/svg/upvote-icon.svg" alt="" />
                       <p>{x.upvotes}</p>
                     </button>
-                    <button className="commentsBtn">
+                    <button className="commentsBtn" onClick={() => {
+                  setCurrentFeedback(x);
+                  window.location.hash = `#/feedback-detail/${x.id}`;
+                }}>
                       <CommentIconSvg />
                       <span>{x.comments.length}</span>
                     </button>

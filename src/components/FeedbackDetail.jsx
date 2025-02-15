@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { FeedbackContext } from "./FeedbackContext";
-import { LeftSvg } from "../Svg";
+import { LeftSvg, CommentIconSvg } from "../Svg";
 
 export default function FeedbackDetail() {
   const { feedbacks, setFeedbacks, isEdit, setEdit, currentFeedback, setCurrentFeedback } = useContext(FeedbackContext);
@@ -58,6 +58,10 @@ export default function FeedbackDetail() {
 
     setFeedbacks(updatedFeedbacks);
     localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks)); 
+    const updatedFeedback = updatedFeedbacks.find(fb => fb.id === feedback.id);
+    setFeedback(updatedFeedback);
+
+
     setNewComment("");
     setCharCount(250);
   }
@@ -103,7 +107,22 @@ export default function FeedbackDetail() {
     window.location.hash = "#/new-feedback";
   }
 
+  function handleUpvotes(id) {
+    const updatedFeedbacks = feedbacks.map((item) =>
+      item.id === id ? { ...item, upvotes: item.upvotes + 1 } : item
+    );
+  
+    setFeedbacks(updatedFeedbacks);
+    localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks));  
+  
+    // // Ekranda anlık değişiklik görmek için ilgili feedback'i de güncelle
+    // const updatedFeedback = updatedFeedbacks.find(fb => fb.id === id);
+    // setFeedback(updatedFeedback);
+  }
+
   return (
+    <>
+    <div className="detailPageContainer">
     <div className="detailPage">
       <div className="detailPageHeader">
         <div className="goBack" onClick={() => window.history.back()}>
@@ -114,73 +133,90 @@ export default function FeedbackDetail() {
       </div>
 
       <div className="detailPageFeedback">
-        <h5>{feedback.title}</h5>
-        <p>{feedback.description}</p>
+        <h5 className="feedbackTitleHeader">{feedback.title}</h5>
+        <p className="feedbackDescription">{feedback.description}</p>
         <span className="feedbackCategory">{feedback.category}</span>
-        <div className="button-flex">
-          <button>{feedback.upvotes}</button>
-          <button>comments: {feedback.comments.length}</button>
+        <div className="upvoteCommentsSection">
+          <button
+            className="upvoteSection"
+            onClick={() => handleUpvotes(feedback.id)}>
+            <img src="/svg/upvote-icon.svg" alt="" />
+            <p className="upvoteCount">{feedback.upvotes}</p>
+          </button>
+          <button className="commentsBtn">
+          <CommentIconSvg />
+            <span className="commentCountNumber">
+              {feedback.comments ? feedback.comments.length : 0}
+            </span>
+        </button>
         </div>
       </div>
 
       <div className="commentsSection">
         <h5>{feedback.comments.length} Comments</h5>
         <ul className="commentsList">
-          {feedback.comments.map((comment) => (
-            <li key={comment.id} className="comment">
-              <div className="commentHeader">
-                <div className="authorSection">
-                  <div className="commentAuthor">
-                    <p>{comment.author}</p>
-                    <p>{comment.username}</p>
-                  </div>
-                </div>
-                <div className="replyBtnArea">
-                  <button className="replyBtn" onClick={() => setReplyTo(comment.id)}>Reply</button>
-                </div>
-              </div>
-              <p>{comment.content}</p>
+  {feedback.comments.slice().reverse().map((comment) => (
+    <li key={comment.id} className="comment">
+      <div className="commentHeader">
+        <div className="authorSection">
+          <div className="commentAuthor">
+            <p className="commentAuthorName">{comment.author}</p>
+            <p className="commentAuthorUserName">{comment.username}</p>
+          </div>
+        </div>
+        <div className="replyBtnArea">
+          <button className="replyBtn" onClick={() => setReplyTo(comment.id)}>Reply</button>
+        </div>
+      </div>
+      <p className="commentContent">{comment.content}</p>
 
-              {replyTo === comment.id && (
-                <div className="ma">
-                  <textarea
-                    value={replyContent}
-                    onChange={(e) => setReplyContent(e.target.value)}
-                    maxLength={250}
-                    placeholder="Type your reply here..."
-                    required
-                  />
-                  <div className="replyFooter">
-                    <p>{250 - replyContent.length} Characters left</p>
-                    <button onClick={() => handleReply(comment.id)} disabled={replyContent.trim() === ""}>
-                      Post Reply
-                    </button>
-                  </div>
-                </div>
-              )}
+      {replyTo === comment.id && (
+        <div className="addComment">
+          <h5 className="addCommentHeader">Add Comment</h5>
+          <form onSubmit={(e) => {
+            e.preventDefault();
+            handleReply(comment.id);
+          }}>
+            <textarea className="addCommentTextArea"
+              value={replyContent}
+              onChange={(e) => setReplyContent(e.target.value)}
+              maxLength={250}
+              placeholder="Type your reply here..."
+              required
+            />
+            <div className="commentFooter">
+              <button className="postCommentButton" type="submit" disabled={replyContent.trim() === ""}>
+                Post Reply
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
 
-              {comment.replies && comment.replies.map((reply) => (
-                <div key={reply.id} className="reply">
-                  <img src={reply.imageUrl} alt="" className="commentAvatar" />
-                  <div className="replyContent">
-                    <p className="commentAuthor">
-                      <strong>{reply.author}</strong> 
-                      <span className="username">{reply.username}</span>
-                    </p>
-                    <p>{reply.content}</p>
-                  </div>
-                </div>
-              ))}
-              <hr />
-            </li>
-          ))}
-        </ul>
+      {comment.replies && comment.replies.map((reply) => (
+        <div key={reply.id} className="replyArea">
+          <img src={reply.imageUrl} alt="" className="commentAvatar" />
+          <div className="replyContent">
+            <div className="replyCommentAuthor">
+              <span className="replyAuthorName">{reply.author}</span> 
+              <span className="replyAuthorUsername">{reply.username}</span>
+            </div>
+            <p>{reply.content}</p>
+          </div>
+        </div>
+      ))}
+      <hr />
+    </li>
+  ))}
+</ul>
+
+      </div>
       </div>
 
       <div className="addComment">
-        <h5>Add Comment</h5>
+        <h5 className="addCommentHeader">Add Comment</h5>
         <form onSubmit={handleAddComment}>
-          <textarea
+          <textarea className="addCommentTextArea"
             value={newComment}
             onChange={(e) => {
               setNewComment(e.target.value);
@@ -191,14 +227,15 @@ export default function FeedbackDetail() {
             required
           />
           <div className="commentFooter">
-            <p>{charCount} Characters left</p>
-            <button type="submit" disabled={newComment.trim() === ""}>
+            <p className="leftCharactersCount">{charCount} Characters left</p>
+            <button className="postCommentButton" type="submit" disabled={newComment.trim() === ""}>
               Post Comment
             </button>
           </div>
         </form>
       </div>
     </div>
+      </>
   );
 }
 
