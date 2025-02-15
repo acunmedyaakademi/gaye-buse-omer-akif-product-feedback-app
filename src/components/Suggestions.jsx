@@ -265,7 +265,7 @@ export default function Suggestions() {
                     </button>
                     <button className="commentsBtn">
                       <CommentIconSvg />
-                      <span>{x.comments.length}</span>
+                      <span>{x.comments?.length}</span>
                     </button>
                   </div>
                 </li>

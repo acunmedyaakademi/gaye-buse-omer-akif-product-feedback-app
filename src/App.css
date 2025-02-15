@@ -694,7 +694,6 @@
   align-items: center;
   gap: 9px;
   border: none;
-  font-family: Jost;
   font-weight: 400;
   font-size: 14px;
   line-height: 20.23px;
@@ -724,7 +723,6 @@
 
 /*omer-start*/
 .feedbackCategory {
-  font-family: Jost;
   font-weight: 600;
   font-size: 13px;
   line-height: 18.79px;
