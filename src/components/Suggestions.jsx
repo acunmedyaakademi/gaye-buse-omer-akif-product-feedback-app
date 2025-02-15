@@ -251,7 +251,10 @@ export default function Suggestions() {
         <ul className="feedbackList">
           {isMobile
             ? sortedFeedbacks.map((x) => (
-                <li className="feedback" key={x.id}>
+                <li className="feedback" key={x.id} onClick={() => {
+                  setCurrentFeedback(x);
+                  window.location.hash = `#/feedback-detail/${x.id}`
+                }}>
                   <h5>{x.title}</h5>
                   <p>{x.description}</p>
                   <h6 className="feedbackCategory">{x.category}</h6>
@@ -299,7 +302,7 @@ export default function Suggestions() {
             Got a suggestion? Found a bug that needs to be squashed? We love
             hearing about new ideas to improve our app.
           </p>
-          <button>+ Add Feedback</button>
+          <button onClick={handleAddClick}>+ Add Feedback</button>
         </div>
       )}
     </div>

@@ -15,6 +15,11 @@ export default function NewFeedback() {
     e.preventDefault();
     const formData = new FormData(e.target);
     const formObj = Object.fromEntries(formData);
+    formObj.id = crypto.randomUUID();
+    formObj.upvotes = 0;
+    formObj.status = "Planned";
+    formObj.category = "Enhancement";
+    formObj.comments = [];
     console.log(formObj);
     setFeedbacks(prevFeedbacks => [formObj, ...prevFeedbacks]);
     console.log(feedbacks);
@@ -42,7 +47,7 @@ export default function NewFeedback() {
       <div className="new-feedback-container-inner">
         <div className="goBack-new-edit-page">
           <LeftSvg />
-         <span>Go Back</span>
+        <a href="#/"><span>Go Back</span></a>
         </div>
         {isEdit ? (
           <div className="edit-feedback-page">
@@ -173,8 +178,8 @@ export default function NewFeedback() {
 
                 {/* Buttons */}
                 <div className="btns-part">
-                  <button className="add-feedback-btn">Add Feedback</button>
-                  <button type="button" className="cancel-btn">Cancel</button>
+                  <a href="#/"><button className="add-feedback-btn">Add Feedback</button></a>
+                 <a href="#/"><button type="button" className="cancel-btn">Cancel</button></a>
                 </div>
               </form>
             </div>
