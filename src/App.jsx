@@ -35,26 +35,6 @@ function App() {
     <FeedbackProvider>
       <div className="app-container">
         <div className="page">
-          <div className="links">
-            <a
-              href="#/"
-              className="link"
-            >
-              home
-            </a>
-            <a
-              href="#/roadmap"
-              className="link"
-            >
-              roadmap
-            </a>
-            <a
-              href="#/new-feedback"
-              className="link"
-            >
-              new
-            </a>
-          </div>
           <PageContext.Provider value={page}>
             {page.component}
           </PageContext.Provider>
