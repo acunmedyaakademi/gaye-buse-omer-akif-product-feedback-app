@@ -384,6 +384,9 @@
   color: #3a4374;
 }
 
+
+
+
 /* omer bitis */
 
 /* buse başlangıç */
@@ -647,13 +650,15 @@
 
 /*omer-start*/
 .feedbackCategory{
-  background-color: #fff;
+  background-color: #f2f4fe;
   color : #4661E6;
   font-weight: 600;
   font-size: 13px;
   line-height: 18.79px;
   letter-spacing: 0px;
-
+  padding: 5px 16px;
+  border-radius: 10px;
+  margin-bottom: 14px;
 }
 
 .commentHeader {

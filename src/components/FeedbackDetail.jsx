@@ -114,10 +114,10 @@ export default function FeedbackDetail() {
       <div className="detailPageFeedback">
         <h5>{feedback.title}</h5>
         <p>{feedback.description}</p>
-        <p className="feedbackCategory">{feedback.category}</p>
+        <span className="feedbackCategory">{feedback.category}</span>
         <div className="button-flex">
-          <button>comments: {feedback.comments.length}</button>
           <button>{feedback.upvotes}</button>
+          <button>comments: {feedback.comments.length}</button>
         </div>
       </div>
 
