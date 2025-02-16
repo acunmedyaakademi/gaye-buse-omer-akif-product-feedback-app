@@ -99,12 +99,13 @@
 
 /* gaye düzenleme başlangıç */
 
-.goBack, .goBack-new-edit-page {
+.goBack, .goBack-new-edit-page a {
   color: rgba(100, 113, 150, 1);
   font-weight: 700;
   font-size: 13px;
   line-height: 18.79px;
   letter-spacing: 0px;
+  cursor: pointer;
 }
 
 .goBack {
@@ -138,8 +139,6 @@
 }
 
 /* gaye düzenleme bitiş */
-
-
 
 .commentsSection {
   padding: 24px;
@@ -635,8 +634,8 @@
   background: #f1f1f9;
   padding: 10px 15px;
   border-radius: 5px;
-  margin-left: 40px; /* Yanıtları biraz içeri al */
-  border-left: 2px solid #ccc; /* Görsel olarak ayrıştır */
+  margin-left: 40px;
+  border-left: 2px solid #ccc;
 }
 
 .replyCommentAuthor {
@@ -1582,23 +1581,24 @@
     .feedbackText {
       margin-right: auto;
       align-items: center;
+      cursor: pointer;
 
       p {
         font-family: Jost;
-font-weight: 400;
-font-size: 16px;
-line-height: 23.12px;
-letter-spacing: 0px;
-color: #647196;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 23.12px;
+        letter-spacing: 0px;
+        color: #647196;
       }
 
       h5 {
         font-family: Jost;
-font-weight: 700;
-font-size: 18px;
-line-height: 26.01px;
-letter-spacing: -0.25px;
-color: #3A4374;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 26.01px;
+        letter-spacing: -0.25px;
+        color: #3A4374;
       }
     }
   }

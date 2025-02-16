@@ -12,8 +12,8 @@ export default function NewFeedback() {
     setCurrentFeedback,
   } = useContext(FeedbackContext);
   const [openDropdown, setOpenDropdown] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState("Feature"); // Varsayılan olarak "Feature"
-  const [selectedStatus, setSelectedStatus] = useState("Suggestion"); // Varsayılan olarak "Suggestion"
+  const [selectedCategory, setSelectedCategory] = useState("Feature");
+  const [selectedStatus, setSelectedStatus] = useState("Suggestion");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -42,12 +42,12 @@ export default function NewFeedback() {
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
-    setOpenDropdown(null); // Seçim yapıldığında dropdown'ı kapat
+    setOpenDropdown(null);
   };
 
   const handleStatusSelect = (status) => {
     setSelectedStatus(status);
-    setOpenDropdown(null); // Seçim yapıldığında dropdown'ı kapat
+    setOpenDropdown(null);
   };
 
   const updatedComments = (e) => {
@@ -66,18 +66,10 @@ export default function NewFeedback() {
     const updatedFeedbacks = feedbacks.map((inv) =>
       inv.id === currentFeedback.id ? updatedFeedback : inv
     );
-    
+
     setCurrentFeedback(updatedFeedback);
-    setFeedbacks(updatedFeedbacks); // State güncelleniyor
-    localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks)); // localStorage güncelleniyor
-
-    // const updatedFeedbacks = feedbacks.map(inv => inv.id === currentFeedback.id ? updatedFeedback : inv);
-
-    // setFeedbacks(updatedFeedbacks);
-
-    // // Güncellenmiş feedbacks dizisini localStorage'a kaydediyoruz
-    // localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks));
-
+    setFeedbacks(updatedFeedbacks);
+    localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks));
     setEdit(false);
     setCurrentFeedback(null);
     e.target.reset();
@@ -91,7 +83,7 @@ export default function NewFeedback() {
         <div className="goBack-new-edit-page">
           <LeftSvg />
           <a href="#/">
-            <span>Go Back go</span>
+            <span>Go Back</span>
           </a>
         </div>
         {isEdit ? (
@@ -114,9 +106,8 @@ export default function NewFeedback() {
                   <label>Category</label>
                   <span>Choose a category for your feedback</span>
                   <div
-                    className={`select-wrapper ${
-                      openDropdown === "category" ? "active" : ""
-                    }`}
+                    className={`select-wrapper ${openDropdown === "category" ? "active" : ""
+                      }`}
                     onClick={() => toggleDropdown("category")}
                   >
                     <div className="selected-option">
@@ -165,9 +156,8 @@ export default function NewFeedback() {
                   <label>Status</label>
                   <span>Change feature state</span>
                   <div
-                    className={`select-wrapper ${
-                      openDropdown === "status" ? "active" : ""
-                    }`}
+                    className={`select-wrapper ${openDropdown === "status" ? "active" : ""
+                      }`}
                     onClick={() => toggleDropdown("status")}
                   >
                     <div className="selected-option">
@@ -252,9 +242,8 @@ export default function NewFeedback() {
                   <label>Category</label>
                   <span>Choose a category for your feedback</span>
                   <div
-                    className={`select-wrapper ${
-                      openDropdown === "category" ? "active" : ""
-                    }`}
+                    className={`select-wrapper ${openDropdown === "category" ? "active" : ""
+                      }`}
                     onClick={() => toggleDropdown("category")}
                   >
                     <div className="selected-option">
