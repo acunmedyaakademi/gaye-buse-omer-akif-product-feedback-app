@@ -99,7 +99,8 @@
 
 /* gaye düzenleme başlangıç */
 
-.goBack, .goBack-new-edit-page a {
+.goBack,
+.goBack-new-edit-page a {
   color: rgba(100, 113, 150, 1);
   font-weight: 700;
   font-size: 13px;
@@ -115,8 +116,9 @@
   gap: 15.67px;
 }
 
-.goBack, .goBack-new-edit-page svg path {
-  stroke: #4661E6;
+.goBack,
+.goBack-new-edit-page svg path {
+  stroke: #4661e6;
 }
 
 .goBack-new-edit-page {
@@ -143,7 +145,6 @@
 .commentsSection {
   padding: 24px;
   background-color: white;
-
 }
 
 .commentsSection h5 {
@@ -503,8 +504,6 @@
   cursor: not-allowed;
 }
 
-
-
 /* omer baslangic*/
 
 .detailPageContainer {
@@ -523,22 +522,22 @@
   font-size: 13px;
   line-height: 18.79px;
   letter-spacing: -0.18px;
-  color : #3A4374;
+  color: #3a4374;
   margin-bottom: 9px;
 }
 
-.feedbackDescription{
+.feedbackDescription {
   font-weight: 400;
   font-size: 13px;
   line-height: 18.79px;
   letter-spacing: 0px;
-  color : #647196;
+  color: #647196;
   margin-bottom: 10px;
 }
 
-.feedbackCategory{
+.feedbackCategory {
   background-color: #f2f4fe;
-  color : #4661E6;
+  color: #4661e6;
   font-weight: 600;
   font-size: 13px;
   line-height: 18.79px;
@@ -569,12 +568,12 @@
   color: #3a4374;
 }
 
- .upvoteCount {
+.upvoteCount {
   font-weight: 700;
   font-size: 13px;
   line-height: 18.79px;
   letter-spacing: -0.18px;
-  color: #3A4374;
+  color: #3a4374;
 }
 
 .commentCountNumber {
@@ -582,30 +581,48 @@
   font-size: 13px;
   line-height: 18.79px;
   letter-spacing: -0.18px;
-  color : #3A4374;
+  color: #3a4374;
 }
 
 .commentHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 17px;
 }
 
-.commentsList .commentAuthorName, .replyAuthorName {
+.commentsList .commentAuthorName,
+.replyAuthorName {
   font-weight: 700;
   font-size: 13px;
   line-height: 18.79px;
   letter-spacing: -0.18px;
-  color : #3A4374;
+  color: #3a4374;
 }
 
-.commentsList .commentAuthorUserName, .replyAuthorUsername {
+.commentsList ,
+.replyAuthorUsername {
   font-weight: 400;
   font-size: 13px;
   line-height: 18.79px;
   letter-spacing: 0px;
-  color : #3A4374;
+  color: #3a4374;
   margin-top: 0;
+}
+
+.commentAuthorUserName {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18.79px;
+  letter-spacing: 0px;
+  color: #0326e9;
+  margin-top: 0;
+}
+
+.replyUserInfo {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
 }
 
 .commentsList .commentContent {
@@ -613,7 +630,7 @@
   font-size: 13px;
   line-height: 18.79px;
   letter-spacing: 0px;
-  color : #647196;
+  color: #647196;
   margin-left: 40px;
   margin-top: 17px;
 }
@@ -627,7 +644,6 @@
   background-color: #fff;
   margin-left: auto;
 }
-
 
 .replyArea {
   margin-top: 24px;
@@ -648,17 +664,17 @@
   font-size: 18px;
   line-height: 26.01px;
   letter-spacing: -0.25px;
-  color : #3A4374;
+  color: #3a4374;
 }
 
-.addComment .addCommentTextArea{
+.addComment .addCommentTextArea {
   margin-top: 24px;
-  background-color: #F7F8FD;
+  background-color: #f7f8fd;
   cursor: pointer;
 }
 
 .addCommentTextArea:hover {
-  border: 1px solid #4661E6;
+  border: 1px solid #4661e6;
 }
 
 .commentFooter .leftCharactersCount {
@@ -666,7 +682,7 @@
   font-size: 13px;
   line-height: 18.79px;
   letter-spacing: 0px;
-  color : #647196;
+  color: #647196;
 }
 
 .commentFooter .postCommentButton {
@@ -674,9 +690,9 @@
   height: 40;
   border-radius: 10px;
   padding: 10px 16px;
-  background-color: #AD1FEA;
-  color : #F2F4FE;
-  cursor : pointer;
+  background-color: #ad1fea;
+  color: #f2f4fe;
+  cursor: pointer;
 }
 
 /* omer bitis */
@@ -1048,6 +1064,15 @@
   padding-block: 34px;
 }
 
+.username {
+  color: #ad1fea;
+  font-family: Jost;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 18.79px;
+  letter-spacing: 0px;
+}
+
 .add-icon {
   background: radial-gradient(
       128.88% 128.88% at 103.9% -10.39%,
@@ -1092,7 +1117,6 @@
   color: #3a4374;
 }
 
-
 .new-feedback-page,
 .edit-feedback-page {
   margin-inline: auto;
@@ -1113,8 +1137,8 @@
   }
 }
 
-.new-feedback-form-section form, 
-.edit-feedback-form-section form{
+.new-feedback-form-section form,
+.edit-feedback-form-section form {
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
@@ -1192,7 +1216,7 @@
     font-size: 13px;
     line-height: 18.79px;
     letter-spacing: 0px;
-    color: #F2F4FE;
+    color: #f2f4fe;
     cursor: pointer;
   }
 }
@@ -1210,7 +1234,7 @@
     font-size: 13px;
     line-height: 18.79px;
     letter-spacing: 0px;
-    color: #F2F4FE;
+    color: #f2f4fe;
     cursor: pointer;
   }
 }
@@ -1231,27 +1255,27 @@
 }
 
 .cancel-btn {
-  background-color: #3A4374;
+  background-color: #3a4374;
   grid-row: 2;
 }
 
 .delete-btn {
-  background-color: #D73737;
+  background-color: #d73737;
   grid-row: 3;
   margin-top: 16px;
 }
 
-.add-feedback-btn:hover, 
+.add-feedback-btn:hover,
 .save-changes-btn:hover {
-  background-color: #C75AF6;
+  background-color: #c75af6;
 }
 
 .cancel-btn:hover {
-  background-color: #656EA3;
+  background-color: #656ea3;
 }
 
 .delete-btn:hover {
-  background-color: #E98888;
+  background-color: #e98888;
 }
 .select-wrapper {
   position: relative;
@@ -1287,7 +1311,7 @@
   border-radius: 10px;
   width: 50%;
   max-width: 255px;
-  box-shadow: 0px 10px 40px -7px #373F6859;
+  box-shadow: 0px 10px 40px -7px #373f6859;
 
   li {
     font-family: Jost;
@@ -1312,7 +1336,7 @@
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0px 10px 40px -7px #373F6859;
+  box-shadow: 0px 10px 40px -7px #373f6859;
   z-index: 1000;
   background: white;
   display: none;
@@ -1564,7 +1588,7 @@
 
   .feedback-tablet {
     display: flex;
-    
+
     .upvote-section {
       display: flex;
       flex-direction: column;
@@ -1598,7 +1622,7 @@
         font-size: 18px;
         line-height: 26.01px;
         letter-spacing: -0.25px;
-        color: #3A4374;
+        color: #3a4374;
       }
     }
   }
@@ -1616,22 +1640,29 @@
     padding-block: 56px;
   }
 
-  .goBack, .goBack-new-edit-page {
+  .goBack,
+  .goBack-new-edit-page {
     font-size: 14px;
     line-height: 20.23px;
   }
-  
+
   .goBack-new-edit-page {
     margin-bottom: 40px;
   }
-  
+
   .editBtn {
     font-size: 14px;
     line-height: 20.23px;
   }
 
   .add-icon {
-    background: radial-gradient(128.88% 128.88% at 103.9% -10.39%, #E84D70 0%, #A337F6 53.09%, #28A7ED 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    background: radial-gradient(
+        128.88% 128.88% at 103.9% -10.39%,
+        #e84d70 0%,
+        #a337f6 53.09%,
+        #28a7ed 100%
+      )
+      /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -1642,8 +1673,9 @@
     top: -20px;
     left: 25px;
   }
-  
-  .new-feedback-page, .edit-feedback-page {
+
+  .new-feedback-page,
+  .edit-feedback-page {
     padding-inline: 42px;
     padding-bottom: 40px;
     padding-top: 52px;
@@ -1652,41 +1684,41 @@
       font-size: 24px;
       line-height: 34.68px;
       letter-spacing: -0.33px;
-      color: #3A4374;
+      color: #3a4374;
       margin-bottom: 40px;
     }
   }
-  
-  .new-feedback-form-section form, 
+
+  .new-feedback-form-section form,
   .edit-feedback-form-section form {
-  
     label {
       font-size: 14px;
       line-height: 20.23px;
       letter-spacing: -0.19px;
       margin-bottom: 2px;
     }
-  
+
     span {
       font-size: 14px;
       line-height: 20.23px;
       margin-bottom: 16px;
     }
-  
-    input, textarea {
+
+    input,
+    textarea {
       padding: 13px 24px;
     }
-    
+
     textarea {
       min-height: 98px;
     }
   }
-  
+
   .btns-part {
     display: flex;
     flex-direction: row-reverse;
     margin-top: 32px;
-  
+
     button {
       width: auto;
       padding: 10.5px 24px;
@@ -1696,7 +1728,7 @@
   .btns-part-edit {
     display: flex;
     justify-content: space-between;
-  
+
     button {
       padding: 10.5px 24px;
       font-size: 14px;
@@ -1713,7 +1745,7 @@
     flex-direction: row;
     gap: 16px;
   }
-  
+
   .select-wrapper {
     max-width: 456px;
   }
@@ -1721,7 +1753,6 @@
 }
 
 @media (width >= 1110px) {
-
   .suggestionsPage {
     display: flex;
     gap: 30px;
@@ -1737,7 +1768,9 @@
     width: 100%;
   }
 
-  .tabletHeaderTextBox, .tabletCategoriesBox, .tabletRoadmapBox {
+  .tabletHeaderTextBox,
+  .tabletCategoriesBox,
+  .tabletRoadmapBox {
     width: 100%;
     width: 255px;
   }
@@ -1753,108 +1786,113 @@
   .dropdown {
     top: 130px;
   }
-    /* gaye başlangıç */
+  /* gaye başlangıç */
 
-    .new-feedback-container-inner {
-      max-width: 540px;
-      padding-block: 92px;
-    }
-    
-    .goBack-new-edit-page {
+  .new-feedback-container-inner {
+    max-width: 540px;
+    padding-block: 92px;
+  }
+
+  .goBack-new-edit-page {
+    margin-bottom: 40px;
+  }
+
+  .editBtn {
+    font-size: 14px;
+    line-height: 20.23px;
+  }
+
+  .add-icon {
+    background: radial-gradient(
+        128.88% 128.88% at 103.9% -10.39%,
+        #e84d70 0%,
+        #a337f6 53.09%,
+        #28a7ed 100%
+      )
+      /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -20px;
+    left: 25px;
+  }
+
+  .new-feedback-page,
+  .edit-feedback-page {
+    padding-inline: 42px;
+    padding-bottom: 40px;
+    padding-top: 52px;
+
+    h2 {
+      font-size: 24px;
+      line-height: 34.68px;
+      letter-spacing: -0.33px;
+      color: #3a4374;
       margin-bottom: 40px;
     }
-    
-    .editBtn {
+  }
+
+  .new-feedback-form-section form,
+  .edit-feedback-form-section form {
+    label {
+      font-size: 14px;
+      line-height: 20.23px;
+      letter-spacing: -0.19px;
+      margin-bottom: 2px;
+    }
+
+    span {
+      font-size: 14px;
+      line-height: 20.23px;
+      margin-bottom: 16px;
+    }
+
+    input,
+    textarea {
+      padding: 13px 24px;
+    }
+
+    textarea {
+      min-height: 98px;
+    }
+  }
+
+  .btns-part {
+    margin-top: 32px;
+
+    button {
+      width: auto;
+      padding: 10.5px 24px;
+    }
+  }
+
+  .btns-part-edit {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      padding: 10.5px 24px;
       font-size: 14px;
       line-height: 20.23px;
     }
-  
-    .add-icon {
-      background: radial-gradient(128.88% 128.88% at 103.9% -10.39%, #E84D70 0%, #A337F6 53.09%, #28A7ED 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-      top: -20px;
-      left: 25px;
-    }
-    
-    .new-feedback-page, .edit-feedback-page {
-      padding-inline: 42px;
-      padding-bottom: 40px;
-      padding-top: 52px;
-  
-      h2 {
-        font-size: 24px;
-        line-height: 34.68px;
-        letter-spacing: -0.33px;
-        color: #3A4374;
-        margin-bottom: 40px;
-      }
-    }
-    
-    .new-feedback-form-section form, 
-    .edit-feedback-form-section form {
-    
-      label {
-        font-size: 14px;
-        line-height: 20.23px;
-        letter-spacing: -0.19px;
-        margin-bottom: 2px;
-      }
-    
-      span {
-        font-size: 14px;
-        line-height: 20.23px;
-        margin-bottom: 16px;
-      }
-    
-      input, textarea {
-        padding: 13px 24px;
-      }
-      
-      textarea {
-        min-height: 98px;
-      }
-    }
-    
-    .btns-part {
-      margin-top: 32px;
-    
-      button {
-        width: auto;
-        padding: 10.5px 24px;
-      }
-    }
-  
-    .btns-part-edit {
-      display: flex;
-      justify-content: space-between;
-    
-      button {
-        padding: 10.5px 24px;
-        font-size: 14px;
-        line-height: 20.23px;
-      }
-    }
-  
-    .delete-btn {
-      margin-top: 0;
-    }
-  
-    .btns-right-side {
-      display: flex;
-      flex-direction: row;
-      gap: 16px;
-    }
-    
-    .select-wrapper {
-      max-width: 456px;
-    }
-    /* gaye bitiş */
+  }
+
+  .delete-btn {
+    margin-top: 0;
+  }
+
+  .btns-right-side {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .select-wrapper {
+    max-width: 456px;
+  }
+  /* gaye bitiş */
 }
-
-
