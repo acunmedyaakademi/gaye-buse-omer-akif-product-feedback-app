@@ -49,7 +49,7 @@ export default function NewFeedback() {
       <div className="new-feedback-container-inner">
         <div className="goBack-new-edit-page">
           <LeftSvg />
-        <a href="#/"><span>Go Back</span></a>
+        <a href="#/"><span>Go Back go</span></a>
         </div>
         {isEdit ? (
           <div className="edit-feedback-page">
