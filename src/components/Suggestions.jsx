@@ -51,8 +51,10 @@ export default function Suggestions() {
 
   useEffect(() => {
     const storedFeedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
-    setFeedbacks(storedFeedbacks);
-  }, [feedbacks]);
+    if (storedFeedbacks.length > 0) {
+      setFeedbacks(storedFeedbacks);
+    }
+  }, []); // ✅ Sayfa yüklendiğinde sadece 1 kez çalışır!
   
   
 
