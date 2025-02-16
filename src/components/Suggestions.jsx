@@ -103,55 +103,59 @@ export default function Suggestions() {
     return "";
   };
 
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category);
+    setIsMenuOpen(false);
+  };
+
   return (
     <div className="suggestionsPage">
-      {!isDesktop ||
-        (!isMobile && (
-          <div className="tabletHeaderSection">
-            <div className="tabletHeaderTextBox">
-              <div className="tabletHeaderText">
-                <h5>Frontend Mentor</h5>
-                <p>Feedback Board</p>
-              </div>
-            </div>
-            <div className="tabletCategoriesBox">
-              <div className="tabletCategories">
-                <button
-                  className={selectedCategory === "All" ? "active" : ""}
-                  onClick={() => setSelectedCategory("All")}
-                >
-                  All
-                </button>
-                {uniqueCategory.map((x) => (
-                  <button
-                    key={x}
-                    className={selectedCategory === x ? "active" : ""}
-                    onClick={() => setSelectedCategory(x)}
-                  >
-                    {x}
-                  </button>
-                ))}
-              </div>
-            </div>
-            <div className="tabletRoadmapBox">
-              <div className="tabletRoadmapBoxHeader">
-                <h6>Roadmap</h6>
-                <a href="#/roadmap">View</a>
-              </div>
-              <ul>
-                {uniqueStatuses.map((status) => (
-                  <li key={status} className={`${getStatusClass(status)}`}>
-                    <h6>
-                      <span></span>
-                      {status}
-                    </h6>
-                    <p>{status.length}</p>
-                  </li>
-                ))}
-              </ul>
+      {!isMobile && (
+        <div className="tabletHeaderSection">
+          <div className="tabletHeaderTextBox">
+            <div className="tabletHeaderText">
+              <h5>Frontend Mentor</h5>
+              <p>Feedback Board</p>
             </div>
           </div>
-        ))}
+          <div className="tabletCategoriesBox">
+            <div className="tabletCategories">
+              <button
+                className={selectedCategory === "All" ? "active" : ""}
+                onClick={() => handleCategorySelect("All")}
+              >
+                All
+              </button>
+              {uniqueCategory.map((x) => (
+                <button
+                  key={x}
+                  className={selectedCategory === x ? "active" : ""}
+                  onClick={() => handleCategorySelect(x)}
+                >
+                  {x}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="tabletRoadmapBox">
+            <div className="tabletRoadmapBoxHeader">
+              <h6>Roadmap</h6>
+              <a href="#/roadmap">View</a>
+            </div>
+            <ul>
+              {uniqueStatuses.map((status) => (
+                <li key={status} className={`${getStatusClass(status)}`}>
+                  <h6>
+                    <span></span>
+                    {status}
+                  </h6>
+                  <p>{status.length}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
       {isMobile && (
         <>
           <div className="suggestionsPageHeader">
@@ -181,91 +185,151 @@ export default function Suggestions() {
                   isMenuOpen ? "block" : "none"
                 }`}
               >
-                <div className="categories">
-                  <button>All</button>
-                  <button>UI</button>
-                  <button>UX</button>
+                <div className="hamburgerCategoriesBox">
+                  <div className="hamburgerCategories">
+                    <button
+                      className={selectedCategory === "All" ? "active" : ""}
+                      onClick={() => handleCategorySelect("All")}
+                    >
+                      All
+                    </button>
+                    {uniqueCategory.map((x) => (
+                      <button
+                        key={x}
+                        className={selectedCategory === x ? "active" : ""}
+                        onClick={() => handleCategorySelect(x)}
+                      >
+                        {x}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-                <div className="roadmap">
-                  <div className="roadmap-head">
-                    <h3>Roadmap</h3>
-                    <button>View</button>
+                <div className="hamburgerRoadmapBox">
+                  <div className="hamburgerRoadmapBoxHeader">
+                    <h6>Roadmap</h6>
+                    <a href="#/roadmap">View</a>
                   </div>
-                  <div className="roadmap-status">
-                    <span>Planned</span>
-                    <span>In-Progress</span>
-                    <span>Live</span>
-                  </div>
+                  <ul>
+                    {uniqueStatuses.map((status) => (
+                      <li key={status} className={`${getStatusClass(status)}`}>
+                        <h6>
+                          <span></span>
+                          {status}
+                        </h6>
+                        <p>{status.length}</p>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
         </>
       )}
-      <div className="selection-area">
-        {!isMobile && (
-          <div className="selection-area-text">
-            <SuggestionIconSvg />
-            <p>{sortedFeedbacks.length} Suggestions</p>
-          </div>
-        )}
-        <div className="sort-menu">
-          <button className="sort-button" onClick={() => setSortBy(!sortBy)}>
-            Sort by : <span> {sortOption}</span>{" "}
-            {sortBy ? <UpIconSvg /> : <DownIconSvg />}
-          </button>
 
-          {sortBy && (
-            <ul className="dropdown">
-              {[
-                "Most Upvotes",
-                "Least Upvotes",
-                "Most Comments",
-                "Least Comments",
-              ].map((option) => (
-                <li
-                  key={option}
-                  className={sortOption === option ? "selected" : ""}
-                  onClick={() => {
-                    setSortOption(option);
-                    setSortBy(false);
-                  }}
-                >
-                  {sortOption === option ? (
-                    <div className="selectedOption">
-                      {option}
-                      <TickIconSvg />
-                    </div>
-                  ) : (
-                    option
-                  )}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-        <button className="addFeedbackBtn" onClick={handleAddClick}>
-          + Add Feedback
-        </button>
-      </div>
       {!isEmpty ? (
-        <ul className="feedbackList">
-          {isMobile
-            ? sortedFeedbacks.map((x) => (
-                <li className="feedback" key={x.id}>
-                  <h5 onClick={() => {
-                  setCurrentFeedback(x);
-                  window.location.hash = `#/feedback-detail/${x.id}`
-                }}>{x.title}</h5>
-                  <p onClick={() => {
-                  setCurrentFeedback(x);
-                  window.location.hash = `#/feedback-detail/${x.id}`
-                }}>{x.description}</p>
-                  <h6 className="feedbackCategory" onClick={() => {
-                  setCurrentFeedback(x);
-                  window.location.hash = `#/feedback-detail/${x.id}`
-                }}>{x.category}</h6>
-                  <div className="button-flex">
+        <div className="suggestionPageInner">
+          <div className="selection-area">
+            {!isMobile && (
+              <div className="selection-area-text">
+                <SuggestionIconSvg />
+                <p>{sortedFeedbacks.length} Suggestions</p>
+              </div>
+            )}
+            <div className="sort-menu">
+              <button
+                className="sort-button"
+                onClick={() => setSortBy(!sortBy)}
+              >
+                Sort by : <span> {sortOption}</span>{" "}
+                {sortBy ? <UpIconSvg /> : <DownIconSvg />}
+              </button>
+
+              {sortBy && (
+                <ul className="dropdown">
+                  {[
+                    "Most Upvotes",
+                    "Least Upvotes",
+                    "Most Comments",
+                    "Least Comments",
+                  ].map((option) => (
+                    <li
+                      key={option}
+                      className={sortOption === option ? "selected" : ""}
+                      onClick={() => {
+                        setSortOption(option);
+                        setSortBy(false);
+                      }}
+                    >
+                      {sortOption === option ? (
+                        <div className="selectedOption">
+                          {option}
+                          <TickIconSvg />
+                        </div>
+                      ) : (
+                        option
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <button className="addFeedbackBtn" onClick={handleAddClick}>
+              + Add Feedback
+            </button>
+          </div>
+          <ul className="feedbackList">
+            {isMobile
+              ? sortedFeedbacks.map((x) => (
+                  <li className="feedback" key={x.id}>
+                    <h5
+                      onClick={() => {
+                        setCurrentFeedback(x);
+                        window.location.hash = `#/feedback-detail/${x.id}`;
+                      }}
+                    >
+                      {x.title}
+                    </h5>
+                    <p
+                      onClick={() => {
+                        setCurrentFeedback(x);
+                        window.location.hash = `#/feedback-detail/${x.id}`;
+                      }}
+                    >
+                      {x.description}
+                    </p>
+                    <h6
+                      className="feedbackCategory"
+                      onClick={() => {
+                        setCurrentFeedback(x);
+                        window.location.hash = `#/feedback-detail/${x.id}`;
+                      }}
+                    >
+                      {x.category}
+                    </h6>
+                    <div className="feedbackBtn">
+                      <button
+                        className="upvote-section"
+                        onClick={() => handleUpvotes(x.id)}
+                      >
+                        <img src="/svg/upvote-icon.svg" alt="" />
+                        <p>{x.upvotes}</p>
+                      </button>
+                      <button
+                        className="commentsBtn"
+                        onClick={() => {
+                          setCurrentFeedback(x);
+                          window.location.hash = `#/feedback-detail/${x.id}`;
+                        }}
+                      >
+                        <CommentIconSvg />
+                        <span>{x.comments?.length}</span>
+                      </button>
+                    </div>
+                  </li>
+                ))
+              : sortedFeedbacks.map((x) => (
+                  <li className="feedback feedback-tablet" key={x.id}>
                     <button
                       className="upvote-section"
                       onClick={() => handleUpvotes(x.id)}
@@ -273,43 +337,31 @@ export default function Suggestions() {
                       <img src="/svg/upvote-icon.svg" alt="" />
                       <p>{x.upvotes}</p>
                     </button>
-                    <button className="commentsBtn" onClick={() => {
-                  setCurrentFeedback(x);
-                  window.location.hash = `#/feedback-detail/${x.id}`;
-                }}>
+                    <div
+                      className="feedbackText"
+                      onClick={() => {
+                        setCurrentFeedback(x);
+                        window.location.hash = `#/feedback-detail/${x.id}`;
+                      }}
+                    >
+                      <h5>{x.title}</h5>
+                      <p>{x.description}</p>
+                      <h6 className="feedbackCategory">{x.category}</h6>
+                    </div>
+                    <button
+                      className="commentsBtn"
+                      onClick={() => {
+                        setCurrentFeedback(x);
+                        window.location.hash = `#/feedback-detail/${x.id}`;
+                      }}
+                    >
                       <CommentIconSvg />
-                      <span>{x.comments?.length}</span>
+                      <span>{x.comments.length}</span>
                     </button>
-                  </div>
-                </li>
-              ))
-            : sortedFeedbacks.map((x) => (
-                <li className="feedback feedback-tablet" key={x.id}>
-                  <button
-                    className="upvote-section"
-                    onClick={() => handleUpvotes(x.id)}
-                  >
-                    <img src="/svg/upvote-icon.svg" alt="" />
-                    <p>{x.upvotes}</p>
-                  </button>
-                  <div className="feedbackText" onClick={() => {
-                  setCurrentFeedback(x);
-                  window.location.hash = `#/feedback-detail/${x.id}`;
-                }}>
-                    <h5>{x.title}</h5>
-                    <p>{x.description}</p>
-                    <h6 className="feedbackCategory">{x.category}</h6>
-                  </div>
-                  <button className="commentsBtn" onClick={() => {
-                  setCurrentFeedback(x);
-                  window.location.hash = `#/feedback-detail/${x.id}`;
-                }}>
-                    <CommentIconSvg />
-                    <span>{x.comments.length}</span>
-                  </button>
-                </li>
-              ))}
-        </ul>
+                  </li>
+                ))}
+          </ul>
+        </div>
       ) : (
         <div className="empty-page">
           <img src="/public/images/empty-page-icon.svg" />
