@@ -12,23 +12,23 @@ export default function NewFeedback() {
     e.preventDefault();
     const formData = new FormData(e.target);
     const formObj = Object.fromEntries(formData);
-  
-    formObj.id = crypto.randomUUID(); 
+
+    formObj.id = crypto.randomUUID();
     formObj.upvotes = 0;
     formObj.status = "Planned";
     formObj.category = selectedCategory;
     formObj.comments = [];
-    
+
     setFeedbacks(prevFeedbacks => {
       const updatedFeedbacks = [formObj, ...prevFeedbacks];
-      localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks)); 
+      localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks));
       return updatedFeedbacks;
     });
-  
+
     setCurrentFeedback(formObj);
     window.location.hash = `#/`;
   }
-  
+
 
   const toggleDropdown = (dropdown) => {
     setOpenDropdown(openDropdown === dropdown ? null : dropdown);
@@ -44,12 +44,44 @@ export default function NewFeedback() {
     setOpenDropdown(null);  // Seçim yapıldığında dropdown'ı kapat
   };
 
+  const updatedComments = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const formObj = Object.fromEntries(form);
+
+    const updatedFeedback = {
+      ...currentFeedback,
+      title: formObj.title || currentFeedback.title,
+      description: formObj.description || currentFeedback.description,
+      category: selectedCategory || currentFeedback.category,
+      status: selectedStatus || currentFeedback.status,
+    };
+
+    setFeedbacks(feedbacks.map(inv => inv.id === currentFeedback.id ? updatedFeedback : inv));
+
+    localStorage.setItem("feedbacks", JSON.stringify(feedbacks.map(inv => inv.id === currentFeedback.id ? updatedFeedback : inv)));
+
+    // const updatedFeedbacks = feedbacks.map(inv => inv.id === currentFeedback.id ? updatedFeedback : inv);
+
+    // setFeedbacks(updatedFeedbacks);
+
+    // // Güncellenmiş feedbacks dizisini localStorage'a kaydediyoruz
+    // localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks));
+
+    setEdit(false);
+    setCurrentFeedback(null);
+    e.target.reset();
+
+    window.location.hash = "#/";
+  };
+
+
   return (
     <div className="new-feedback-container">
       <div className="new-feedback-container-inner">
         <div className="goBack-new-edit-page">
           <LeftSvg />
-        <a href="#/"><span>Go Back go</span></a>
+          <a href="#/"><span>Go Back go</span></a>
         </div>
         {isEdit ? (
           <div className="edit-feedback-page">
@@ -58,7 +90,7 @@ export default function NewFeedback() {
             </div>
             <h2>Editing '{currentFeedback.title}'</h2>
             <div className="edit-feedback-form-section">
-              <form autoComplete="off" onSubmit={handleSubmit}>
+              <form autoComplete="off" onSubmit={updatedComments}>
                 {/* Feedback Title */}
                 <div className="feedback-title">
                   <label>Feedback Title</label>
@@ -117,7 +149,7 @@ export default function NewFeedback() {
                 <div className="feedback-detail-part">
                   <label htmlFor="feedback-detail">Feedback Detail</label>
                   <span>Include any specific comments on what should be improved, added, etc.</span>
-                  <textarea required />
+                  <textarea name="description" required />
                 </div>
 
                 {/* Buttons */}
@@ -180,7 +212,7 @@ export default function NewFeedback() {
                 {/* Buttons */}
                 <div className="btns-part">
                   <a href="#/"><button className="add-feedback-btn">Add Feedback</button></a>
-                 <a href="#/"><button type="button" className="cancel-btn">Cancel</button></a>
+                  <a href="#/"><button type="button" className="cancel-btn">Cancel</button></a>
                 </div>
               </form>
             </div>
