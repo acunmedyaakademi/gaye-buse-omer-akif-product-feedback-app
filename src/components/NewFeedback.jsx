@@ -3,10 +3,17 @@ import { FeedbackContext } from "./FeedbackContext";
 import { LeftSvg } from "../Svg";
 
 export default function NewFeedback() {
-  const { feedbacks, setFeedbacks, isEdit, setEdit, currentFeedback, setCurrentFeedback } = useContext(FeedbackContext);
+  const {
+    feedbacks,
+    setFeedbacks,
+    isEdit,
+    setEdit,
+    currentFeedback,
+    setCurrentFeedback,
+  } = useContext(FeedbackContext);
   const [openDropdown, setOpenDropdown] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState("Feature");  // Varsayılan olarak "Feature"
-  const [selectedStatus, setSelectedStatus] = useState("Suggestion");  // Varsayılan olarak "Suggestion"
+  const [selectedCategory, setSelectedCategory] = useState("Feature"); // Varsayılan olarak "Feature"
+  const [selectedStatus, setSelectedStatus] = useState("Suggestion"); // Varsayılan olarak "Suggestion"
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -19,7 +26,7 @@ export default function NewFeedback() {
     formObj.category = selectedCategory;
     formObj.comments = [];
 
-    setFeedbacks(prevFeedbacks => {
+    setFeedbacks((prevFeedbacks) => {
       const updatedFeedbacks = [formObj, ...prevFeedbacks];
       localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks));
       return updatedFeedbacks;
@@ -29,19 +36,18 @@ export default function NewFeedback() {
     window.location.hash = `#/`;
   }
 
-
   const toggleDropdown = (dropdown) => {
     setOpenDropdown(openDropdown === dropdown ? null : dropdown);
   };
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
-    setOpenDropdown(null);  // Seçim yapıldığında dropdown'ı kapat
+    setOpenDropdown(null); // Seçim yapıldığında dropdown'ı kapat
   };
 
   const handleStatusSelect = (status) => {
     setSelectedStatus(status);
-    setOpenDropdown(null);  // Seçim yapıldığında dropdown'ı kapat
+    setOpenDropdown(null); // Seçim yapıldığında dropdown'ı kapat
   };
 
   const updatedComments = (e) => {
@@ -57,9 +63,13 @@ export default function NewFeedback() {
       status: selectedStatus || currentFeedback.status,
     };
 
-    setFeedbacks(feedbacks.map(inv => inv.id === currentFeedback.id ? updatedFeedback : inv));
-
-    localStorage.setItem("feedbacks", JSON.stringify(feedbacks.map(inv => inv.id === currentFeedback.id ? updatedFeedback : inv)));
+    const updatedFeedbacks = feedbacks.map((inv) =>
+      inv.id === currentFeedback.id ? updatedFeedback : inv
+    );
+    
+    setCurrentFeedback(updatedFeedback);
+    setFeedbacks(updatedFeedbacks); // State güncelleniyor
+    localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks)); // localStorage güncelleniyor
 
     // const updatedFeedbacks = feedbacks.map(inv => inv.id === currentFeedback.id ? updatedFeedback : inv);
 
@@ -75,13 +85,14 @@ export default function NewFeedback() {
     window.location.hash = "#/";
   };
 
-
   return (
     <div className="new-feedback-container">
       <div className="new-feedback-container-inner">
         <div className="goBack-new-edit-page">
           <LeftSvg />
-          <a href="#/"><span>Go Back go</span></a>
+          <a href="#/">
+            <span>Go Back go</span>
+          </a>
         </div>
         {isEdit ? (
           <div className="edit-feedback-page">
@@ -103,20 +114,47 @@ export default function NewFeedback() {
                   <label>Category</label>
                   <span>Choose a category for your feedback</span>
                   <div
-                    className={`select-wrapper ${openDropdown === 'category' ? 'active' : ''}`}
-                    onClick={() => toggleDropdown('category')}
+                    className={`select-wrapper ${
+                      openDropdown === "category" ? "active" : ""
+                    }`}
+                    onClick={() => toggleDropdown("category")}
                   >
                     <div className="selected-option">
                       <p>{selectedCategory}</p>
                       <img src="/svg/dropdown-icon.svg" alt="Dropdown Icon" />
                     </div>
-                    {openDropdown === 'category' && (
+                    {openDropdown === "category" && (
                       <div className="dropdown-options">
-                        <div className="option-item" onClick={() => handleCategorySelect("Feature")}>Feature</div>
-                        <div className="option-item" onClick={() => handleCategorySelect("UI")}>UI</div>
-                        <div className="option-item" onClick={() => handleCategorySelect("UX")}>UX</div>
-                        <div className="option-item" onClick={() => handleCategorySelect("Enhancement")}>Enhancement</div>
-                        <div className="option-item" onClick={() => handleCategorySelect("Bug")}>Bug</div>
+                        <div
+                          className="option-item"
+                          onClick={() => handleCategorySelect("Feature")}
+                        >
+                          Feature
+                        </div>
+                        <div
+                          className="option-item"
+                          onClick={() => handleCategorySelect("UI")}
+                        >
+                          UI
+                        </div>
+                        <div
+                          className="option-item"
+                          onClick={() => handleCategorySelect("UX")}
+                        >
+                          UX
+                        </div>
+                        <div
+                          className="option-item"
+                          onClick={() => handleCategorySelect("Enhancement")}
+                        >
+                          Enhancement
+                        </div>
+                        <div
+                          className="option-item"
+                          onClick={() => handleCategorySelect("Bug")}
+                        >
+                          Bug
+                        </div>
                       </div>
                     )}
                   </div>
@@ -127,19 +165,41 @@ export default function NewFeedback() {
                   <label>Status</label>
                   <span>Change feature state</span>
                   <div
-                    className={`select-wrapper ${openDropdown === 'status' ? 'active' : ''}`}
-                    onClick={() => toggleDropdown('status')}
+                    className={`select-wrapper ${
+                      openDropdown === "status" ? "active" : ""
+                    }`}
+                    onClick={() => toggleDropdown("status")}
                   >
                     <div className="selected-option">
                       <p>{selectedStatus}</p>
                       <img src="/svg/dropdown-icon.svg" alt="Dropdown Icon" />
                     </div>
-                    {openDropdown === 'status' && (
+                    {openDropdown === "status" && (
                       <div className="dropdown-options">
-                        <div className="option-item" onClick={() => handleStatusSelect("Suggestion")}>Suggestion</div>
-                        <div className="option-item" onClick={() => handleStatusSelect("Planned")}>Planned</div>
-                        <div className="option-item" onClick={() => handleStatusSelect("In-Progress")}>In-Progress</div>
-                        <div className="option-item" onClick={() => handleStatusSelect("Live")}>Live</div>
+                        <div
+                          className="option-item"
+                          onClick={() => handleStatusSelect("Suggestion")}
+                        >
+                          Suggestion
+                        </div>
+                        <div
+                          className="option-item"
+                          onClick={() => handleStatusSelect("Planned")}
+                        >
+                          Planned
+                        </div>
+                        <div
+                          className="option-item"
+                          onClick={() => handleStatusSelect("In-Progress")}
+                        >
+                          In-Progress
+                        </div>
+                        <div
+                          className="option-item"
+                          onClick={() => handleStatusSelect("Live")}
+                        >
+                          Live
+                        </div>
                       </div>
                     )}
                   </div>
@@ -148,16 +208,25 @@ export default function NewFeedback() {
                 {/* Feedback Detail */}
                 <div className="feedback-detail-part">
                   <label htmlFor="feedback-detail">Feedback Detail</label>
-                  <span>Include any specific comments on what should be improved, added, etc.</span>
+                  <span>
+                    Include any specific comments on what should be improved,
+                    added, etc.
+                  </span>
                   <textarea name="description" required />
                 </div>
 
                 {/* Buttons */}
                 <div className="btns-part-edit">
-                  <button type="button" className="delete-btn">Delete</button>
+                  <button type="button" className="delete-btn">
+                    Delete
+                  </button>
                   <div className="btns-right-side">
-                    <button type="button" className="cancel-btn">Cancel</button>
-                    <button type="submit" className="save-changes-btn">Save Changes</button>
+                    <button type="button" className="cancel-btn">
+                      Cancel
+                    </button>
+                    <button type="submit" className="save-changes-btn">
+                      Save Changes
+                    </button>
                   </div>
                 </div>
               </form>
@@ -183,20 +252,47 @@ export default function NewFeedback() {
                   <label>Category</label>
                   <span>Choose a category for your feedback</span>
                   <div
-                    className={`select-wrapper ${openDropdown === 'category' ? 'active' : ''}`}
-                    onClick={() => toggleDropdown('category')}
+                    className={`select-wrapper ${
+                      openDropdown === "category" ? "active" : ""
+                    }`}
+                    onClick={() => toggleDropdown("category")}
                   >
                     <div className="selected-option">
                       <p>{selectedCategory}</p>
                       <img src="/svg/dropdown-icon.svg" alt="Dropdown Icon" />
                     </div>
-                    {openDropdown === 'category' && (
+                    {openDropdown === "category" && (
                       <div className="dropdown-options">
-                        <div className="option-item" onClick={() => handleCategorySelect("Feature")}>Feature</div>
-                        <div className="option-item" onClick={() => handleCategorySelect("UI")}>UI</div>
-                        <div className="option-item" onClick={() => handleCategorySelect("UX")}>UX</div>
-                        <div className="option-item" onClick={() => handleCategorySelect("Enhancement")}>Enhancement</div>
-                        <div className="option-item" onClick={() => handleCategorySelect("Bug")}>Bug</div>
+                        <div
+                          className="option-item"
+                          onClick={() => handleCategorySelect("Feature")}
+                        >
+                          Feature
+                        </div>
+                        <div
+                          className="option-item"
+                          onClick={() => handleCategorySelect("UI")}
+                        >
+                          UI
+                        </div>
+                        <div
+                          className="option-item"
+                          onClick={() => handleCategorySelect("UX")}
+                        >
+                          UX
+                        </div>
+                        <div
+                          className="option-item"
+                          onClick={() => handleCategorySelect("Enhancement")}
+                        >
+                          Enhancement
+                        </div>
+                        <div
+                          className="option-item"
+                          onClick={() => handleCategorySelect("Bug")}
+                        >
+                          Bug
+                        </div>
                       </div>
                     )}
                   </div>
@@ -205,14 +301,23 @@ export default function NewFeedback() {
                 {/* Feedback Detail */}
                 <div className="feedback-detail-part">
                   <label htmlFor="feedback-detail">Feedback Detail</label>
-                  <span>Include any specific comments on what should be improved, added, etc.</span>
+                  <span>
+                    Include any specific comments on what should be improved,
+                    added, etc.
+                  </span>
                   <textarea name="description" required />
                 </div>
 
                 {/* Buttons */}
                 <div className="btns-part">
-                  <a href="#/"><button className="add-feedback-btn">Add Feedback</button></a>
-                  <a href="#/"><button type="button" className="cancel-btn">Cancel</button></a>
+                  <a href="#/">
+                    <button className="add-feedback-btn">Add Feedback</button>
+                  </a>
+                  <a href="#/">
+                    <button type="button" className="cancel-btn">
+                      Cancel
+                    </button>
+                  </a>
                 </div>
               </form>
             </div>

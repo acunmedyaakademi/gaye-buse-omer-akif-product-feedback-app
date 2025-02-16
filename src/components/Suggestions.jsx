@@ -8,7 +8,6 @@ import {
   UpIconSvg,
 } from "../Svg";
 import FeedbackDetail from "./FeedbackDetail";
-
 export default function Suggestions() {
   const {
     feedbacks,
@@ -49,6 +48,13 @@ export default function Suggestions() {
         return 0;
     }
   });
+
+  useEffect(() => {
+    const storedFeedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
+    setFeedbacks(storedFeedbacks);
+  }, [feedbacks]);
+  
+  
 
   useEffect(() => {
     const handleResize = () => {
