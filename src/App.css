@@ -1322,6 +1322,10 @@
   display: block;
 }
 
+.select-wrapper.active .dropdown-options {
+  display: block;
+}
+
 .option-item {
   padding: 12px 24px;
   font-weight: 400;
