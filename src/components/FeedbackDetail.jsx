@@ -26,72 +26,79 @@ export default function FeedbackDetail() {
 
   function handleAddComment(event) {
     event.preventDefault();
-
+  
     if (newComment.trim() === "" || charCount <= 0) return;
-
+  
     const updatedFeedbacks = feedbacks.map((fb) =>
       fb.id === feedback.id
         ? {
-          ...fb,
-          comments: [
-            ...fb.comments,
-            {
-              id: Date.now(),
-              author: "Anonymous",
-              username: "@anonymous",
-              content: newComment,
-              imageUrl: 'images/@anonymous.png',
-              replies: []
-            },
-          ],
-        }
+            ...fb,
+            comments: [
+              ...fb.comments,
+              {
+                id: Date.now(),
+                author: "Anonymous",
+                username: "@anonymous",
+                content: newComment,
+                imageUrl: 'images/@anonymous.png',
+                replies: []
+              },
+            ],
+          }
         : fb
     );
-
+  
     setFeedbacks(updatedFeedbacks);
     localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks));
+  
+    // ✅ **Güncellenen `feedback` state'ini de ayarla**
     const updatedFeedback = updatedFeedbacks.find(fb => fb.id === feedback.id);
     setFeedback(updatedFeedback);
-
-
+  
     setNewComment("");
     setCharCount(250);
   }
+  
 
   function handleReply(parentId) {
     if (replyContent.trim() === "") return;
-
+  
     const updatedFeedbacks = feedbacks.map((fb) =>
       fb.id === feedback.id
         ? {
-          ...fb,
-          comments: fb.comments.map((comment) =>
-            comment.id === parentId
-              ? {
-                ...comment,
-                replies: [
-                  ...(comment.replies || []),
-                  {
-                    id: Date.now(),
-                    author: "Anonymous",
-                    username: "@anonymous",
-                    content: replyContent,
-                    imageUrl: 'images/@anonymous.png',
-                  },
-                ],
-              }
-              : comment
-          ),
-        }
+            ...fb,
+            comments: fb.comments.map((comment) =>
+              comment.id === parentId
+                ? {
+                    ...comment,
+                    replies: [
+                      ...(comment.replies || []),
+                      {
+                        id: Date.now(),
+                        author: "Anonymous",
+                        username: "@anonymous",
+                        content: replyContent,
+                        imageUrl: 'images/@anonymous.png',
+                      },
+                    ],
+                  }
+                : comment
+            ),
+          }
         : fb
     );
-
+  
     setFeedbacks(updatedFeedbacks);
+    localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks));
+  
+    // ✅ **Güncellenen `feedback` state'ini de ayarla**
+    const updatedFeedback = updatedFeedbacks.find(fb => fb.id === feedback.id);
+    setFeedback(updatedFeedback);
+  
     setReplyTo(null);
     setReplyContent("");
-    localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks));
   }
-
+  
 
   function handleEditClick() {
     setEdit(true);
