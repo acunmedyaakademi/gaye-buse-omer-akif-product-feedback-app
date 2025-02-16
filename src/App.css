@@ -1314,7 +1314,8 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0px 10px 40px -7px #373F6859;
-  z-index: 10;
+  z-index: 1000;
+  background: white;
   display: none;
 }
 
