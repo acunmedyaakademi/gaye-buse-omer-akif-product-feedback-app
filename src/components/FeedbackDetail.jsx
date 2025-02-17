@@ -41,26 +41,25 @@ export default function FeedbackDetail() {
     const updatedFeedbacks = feedbacks.map((fb) =>
       fb.id === feedback.id
         ? {
-            ...fb,
-            comments: [
-              ...fb.comments,
-              {
-                id: Date.now(),
-                author: "Anonymous",
-                username: "@anonymous",
-                content: newComment,
-                imageUrl: "images/@anonymous.png",
-                replies: [],
-              },
-            ],
-          }
+          ...fb,
+          comments: [
+            ...fb.comments,
+            {
+              id: Date.now(),
+              author: "Anonymous",
+              username: "@anonymous",
+              content: newComment,
+              imageUrl: "images/@anonymous.png",
+              replies: [],
+            },
+          ],
+        }
         : fb
     );
 
     setFeedbacks(updatedFeedbacks);
     localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks));
 
-    // ✅ **Güncellenen `feedback` state'ini de ayarla**
     const updatedFeedback = updatedFeedbacks.find(
       (fb) => fb.id === feedback.id
     );
@@ -76,25 +75,25 @@ export default function FeedbackDetail() {
     const updatedFeedbacks = feedbacks.map((fb) =>
       fb.id === feedback.id
         ? {
-            ...fb,
-            comments: fb.comments.map((comment) =>
-              comment.id === parentId
-                ? {
-                    ...comment,
-                    replies: [
-                      ...(comment.replies || []),
-                      {
-                        id: Date.now(),
-                        author: "Anonymous",
-                        username: "@anonymous",
-                        content: `<span class="username">${username}</span> ${replyContent}`,
-                        imageUrl: "images/@anonymous.png",
-                      },
-                    ],
-                  }
-                : comment
-            ),
-          }
+          ...fb,
+          comments: fb.comments.map((comment) =>
+            comment.id === parentId
+              ? {
+                ...comment,
+                replies: [
+                  ...(comment.replies || []),
+                  {
+                    id: Date.now(),
+                    author: "Anonymous",
+                    username: "@anonymous",
+                    content: `<span class="username">${username}</span> ${replyContent}`,
+                    imageUrl: "images/@anonymous.png",
+                  },
+                ],
+              }
+              : comment
+          ),
+        }
         : fb
     );
 
@@ -135,7 +134,7 @@ export default function FeedbackDetail() {
   function formatUsernames(text) {
     return text.replace(/(@\w+)/g, '<span class="username">$1</span>');
   }
-  
+
 
   return (
     <>
@@ -234,12 +233,12 @@ export default function FeedbackDetail() {
                       comment.replies.map((reply) => (
                         <div key={reply.id} className="replyArea">
                           <div className="replyUserInfo">
-                          <img
-                            src={`images/${reply.username}.png`}
-                            alt=""
-                            className="commentAvatar"
-                          />
-                          <div className="replyCommentAuthor">
+                            <img
+                              src={`images/${reply.username}.png`}
+                              alt=""
+                              className="commentAvatar"
+                            />
+                            <div className="replyCommentAuthor">
                               <span className="replyAuthorName">
                                 {reply.author}
                               </span>
@@ -249,9 +248,9 @@ export default function FeedbackDetail() {
                             </div>
                           </div>
                           <div className="replyContent">
-                          <p dangerouslySetInnerHTML={{ __html: formatUsernames(reply.content) }}></p>
+                            <p dangerouslySetInnerHTML={{ __html: formatUsernames(reply.content) }}></p>
 
-                                      </div>
+                          </div>
                         </div>
                       ))}
                     <hr />

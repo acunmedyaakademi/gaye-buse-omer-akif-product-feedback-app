@@ -7,7 +7,7 @@ import {
   TickIconSvg,
   UpIconSvg,
 } from "../Svg";
-import FeedbackDetail from "./FeedbackDetail";
+
 export default function Suggestions() {
   const {
     feedbacks,
@@ -54,9 +54,9 @@ export default function Suggestions() {
     if (storedFeedbacks.length > 0) {
       setFeedbacks(storedFeedbacks);
     }
-  }, []); // ✅ Sayfa yüklendiğinde sadece 1 kez çalışır!
-  
-  
+  }, []); // Sayfa yüklendiğinde sadece 1 kez çalışır
+
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -184,14 +184,12 @@ export default function Suggestions() {
               />
             </div>
             <div
-              className={`hamburger-menu-overlay ${
-                isMenuOpen ? "block" : "none"
-              }`}
+              className={`hamburger-menu-overlay ${isMenuOpen ? "block" : "none"
+                }`}
             >
               <div
-                className={`hamburger-menu-content ${
-                  isMenuOpen ? "block" : "none"
-                }`}
+                className={`hamburger-menu-content ${isMenuOpen ? "block" : "none"
+                  }`}
               >
                 <div className="hamburgerCategoriesBox">
                   <div className="hamburgerCategories">
@@ -289,55 +287,33 @@ export default function Suggestions() {
           <ul className="feedbackList">
             {isMobile
               ? sortedFeedbacks.map((x) => (
-                  <li className="feedback" key={x.id}>
-                    <h5
-                      onClick={() => {
-                        setCurrentFeedback(x);
-                        window.location.hash = `#/feedback-detail/${x.id}`;
-                      }}
-                    >
-                      {x.title}
-                    </h5>
-                    <p
-                      onClick={() => {
-                        setCurrentFeedback(x);
-                        window.location.hash = `#/feedback-detail/${x.id}`;
-                      }}
-                    >
-                      {x.description}
-                    </p>
-                    <h6
-                      className="feedbackCategory"
-                      onClick={() => {
-                        setCurrentFeedback(x);
-                        window.location.hash = `#/feedback-detail/${x.id}`;
-                      }}
-                    >
-                      {x.category}
-                    </h6>
-                    <div className="feedbackBtn">
-                      <button
-                        className="upvote-section"
-                        onClick={() => handleUpvotes(x.id)}
-                      >
-                        <img src="/svg/upvote-icon.svg" alt="" />
-                        <p>{x.upvotes}</p>
-                      </button>
-                      <button
-                        className="commentsBtn"
-                        onClick={() => {
-                          setCurrentFeedback(x);
-                          window.location.hash = `#/feedback-detail/${x.id}`;
-                        }}
-                      >
-                        <CommentIconSvg />
-                        <span>{x.comments?.length}</span>
-                      </button>
-                    </div>
-                  </li>
-                ))
-              : sortedFeedbacks.map((x) => (
-                  <li className="feedback feedback-tablet" key={x.id}>
+                <li className="feedback" key={x.id}>
+                  <h5
+                    onClick={() => {
+                      setCurrentFeedback(x);
+                      window.location.hash = `#/feedback-detail/${x.id}`;
+                    }}
+                  >
+                    {x.title}
+                  </h5>
+                  <p
+                    onClick={() => {
+                      setCurrentFeedback(x);
+                      window.location.hash = `#/feedback-detail/${x.id}`;
+                    }}
+                  >
+                    {x.description}
+                  </p>
+                  <h6
+                    className="feedbackCategory"
+                    onClick={() => {
+                      setCurrentFeedback(x);
+                      window.location.hash = `#/feedback-detail/${x.id}`;
+                    }}
+                  >
+                    {x.category}
+                  </h6>
+                  <div className="feedbackBtn">
                     <button
                       className="upvote-section"
                       onClick={() => handleUpvotes(x.id)}
@@ -345,17 +321,6 @@ export default function Suggestions() {
                       <img src="/svg/upvote-icon.svg" alt="" />
                       <p>{x.upvotes}</p>
                     </button>
-                    <div
-                      className="feedbackText"
-                      onClick={() => {
-                        setCurrentFeedback(x);
-                        window.location.hash = `#/feedback-detail/${x.id}`;
-                      }}
-                    >
-                      <h5>{x.title}</h5>
-                      <p>{x.description}</p>
-                      <h6 className="feedbackCategory">{x.category}</h6>
-                    </div>
                     <button
                       className="commentsBtn"
                       onClick={() => {
@@ -364,10 +329,43 @@ export default function Suggestions() {
                       }}
                     >
                       <CommentIconSvg />
-                      <span>{x.comments.length}</span>
+                      <span>{x.comments?.length}</span>
                     </button>
-                  </li>
-                ))}
+                  </div>
+                </li>
+              ))
+              : sortedFeedbacks.map((x) => (
+                <li className="feedback feedback-tablet" key={x.id}>
+                  <button
+                    className="upvote-section"
+                    onClick={() => handleUpvotes(x.id)}
+                  >
+                    <img src="/svg/upvote-icon.svg" alt="" />
+                    <p>{x.upvotes}</p>
+                  </button>
+                  <div
+                    className="feedbackText"
+                    onClick={() => {
+                      setCurrentFeedback(x);
+                      window.location.hash = `#/feedback-detail/${x.id}`;
+                    }}
+                  >
+                    <h5>{x.title}</h5>
+                    <p>{x.description}</p>
+                    <h6 className="feedbackCategory">{x.category}</h6>
+                  </div>
+                  <button
+                    className="commentsBtn"
+                    onClick={() => {
+                      setCurrentFeedback(x);
+                      window.location.hash = `#/feedback-detail/${x.id}`;
+                    }}
+                  >
+                    <CommentIconSvg />
+                    <span>{x.comments.length}</span>
+                  </button>
+                </li>
+              ))}
           </ul>
         </div>
       ) : (

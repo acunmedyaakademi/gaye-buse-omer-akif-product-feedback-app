@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { FeedbackContext } from "./FeedbackContext";
 import { LeftSvg } from "../Svg";
+import toast from "react-hot-toast";
 
 export default function NewFeedback() {
   const {
@@ -34,7 +35,22 @@ export default function NewFeedback() {
 
     setCurrentFeedback(formObj);
     window.location.hash = `#/`;
+    toast.success(isEdit ? "Feedback updated successfully!" : "Feedback added successfully!");
   }
+
+  function handleDelete(feedbackId) {
+    const updatedFeedbacks = feedbacks.filter((feedback) => feedback.id !== feedbackId);
+
+    setFeedbacks(updatedFeedbacks);
+    localStorage.setItem("feedbacks", JSON.stringify(updatedFeedbacks));
+
+    setCurrentFeedback(null);
+    setEdit(false);
+
+    window.location.hash = "#/";
+    toast.success("Feedback deleted successfully!");
+  }
+
 
   const toggleDropdown = (dropdown) => {
     setOpenDropdown(openDropdown === dropdown ? null : dropdown);
@@ -207,13 +223,15 @@ export default function NewFeedback() {
 
                 {/* Buttons */}
                 <div className="btns-part-edit">
-                  <button type="button" className="delete-btn">
+                  <button type="button" className="delete-btn" onClick={() => handleDelete(currentFeedback.id)}>
                     Delete
                   </button>
                   <div className="btns-right-side">
-                    <button type="button" className="cancel-btn">
-                      Cancel
-                    </button>
+                    <a href="#/">
+                      <button type="button" className="cancel-btn">
+                        Cancel
+                      </button>
+                    </a>
                     <button type="submit" className="save-changes-btn">
                       Save Changes
                     </button>
