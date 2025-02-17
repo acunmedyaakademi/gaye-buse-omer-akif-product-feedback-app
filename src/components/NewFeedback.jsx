@@ -228,11 +228,9 @@ export default function NewFeedback() {
                     Delete
                   </button>
                   <div className="btns-right-side">
-                    <a href="#/">
-                      <button type="button" className="cancel-btn">
-                        Cancel
-                      </button>
-                    </a>
+                    <button type="button" className="cancel-btn" onClick={() => (window.location.hash = "#/")}>
+                      Cancel
+                    </button>
                     <button type="submit" className="save-changes-btn">
                       Save Changes
                     </button>
@@ -318,14 +316,10 @@ export default function NewFeedback() {
 
                 {/* Buttons */}
                 <div className="btns-part">
-                  <a href="#/">
-                    <button className="add-feedback-btn">Add Feedback</button>
-                  </a>
-                  <a href="#/">
-                    <button type="button" className="cancel-btn">
-                      Cancel
-                    </button>
-                  </a>
+                  <button type="submit" className="add-feedback-btn">Add Feedback</button>
+                  <button type="button" className="cancel-btn" onClick={() => (window.location.hash = "#/")}>
+                    Cancel
+                  </button>
                 </div>
               </form>
             </div>
