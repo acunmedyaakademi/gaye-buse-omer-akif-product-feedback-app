@@ -66,6 +66,12 @@
 
 .feedback p {
   margin-block: 8px;
+  font-family: Jost;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18.79px;
+  letter-spacing: 0px;  
+  color: #647196;
 }
 
 .feedback button {
@@ -1226,7 +1232,7 @@
   grid-template-columns: 1fr;
   margin-top: 16px;
 
-  button {
+  button, a {
     padding-block: 10.5px;
     border-radius: 10px;
     border: none;
