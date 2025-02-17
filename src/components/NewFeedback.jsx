@@ -35,7 +35,7 @@ export default function NewFeedback() {
 
     setCurrentFeedback(formObj);
     window.location.hash = `#/`;
-    toast.success(isEdit ? "Feedback updated successfully!" : "Feedback added successfully!");
+    toast.success("Feedback added successfully!");
   }
 
   function handleDelete(feedbackId) {
@@ -91,6 +91,7 @@ export default function NewFeedback() {
     e.target.reset();
 
     window.location.hash = "#/";
+    toast.success("Feedback updated successfully!");
   };
 
   return (
