@@ -1,5 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
 
+input + .errormsg, 
+textarea + .errormsg {
+  display: none;
+}
+
+input:user-invalid, textarea:user-invalid  {
+  border: 1px solid #D73737 !important;
+}
+
+input:user-invalid + .errormsg,
+textarea:user-invalid + .errormsg {
+  display: inline;
+  color: #D73737;
+  margin-top: 4px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20.23px;
+  letter-spacing: 0px;
+}
+
 .suggestionsPageHeader {
   background: radial-gradient(
     128.88% 128.88% at 103.9% -10.39%,

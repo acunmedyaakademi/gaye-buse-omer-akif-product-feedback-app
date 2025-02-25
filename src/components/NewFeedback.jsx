@@ -116,6 +116,7 @@ export default function NewFeedback() {
                   <label>Feedback Title</label>
                   <span>Add a short, descriptive headline</span>
                   <input type="text" name="title" required />
+                  <span className="errormsg">Can’t be empty</span>
                 </div>
 
                 {/* Category Dropdown */}
@@ -220,6 +221,7 @@ export default function NewFeedback() {
                     added, etc.
                   </span>
                   <textarea name="description" required />
+                  <span className="errormsg">Can’t be empty</span>
                 </div>
 
                 {/* Buttons */}
@@ -252,6 +254,7 @@ export default function NewFeedback() {
                   <label>Feedback Title</label>
                   <span>Add a short, descriptive headline</span>
                   <input type="text" name="title" required />
+                  <span className="errormsg">Can’t be empty</span>
                 </div>
 
                 {/* Category Dropdown */}
@@ -312,6 +315,7 @@ export default function NewFeedback() {
                     added, etc.
                   </span>
                   <textarea name="description" required />
+                  <span className="errormsg">Can’t be empty</span>
                 </div>
 
                 {/* Buttons */}
