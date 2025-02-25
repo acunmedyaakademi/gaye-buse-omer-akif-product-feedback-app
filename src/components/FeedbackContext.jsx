@@ -7,21 +7,36 @@ export function FeedbackProvider({ children }) {
   const [isEdit, setEdit] = useState(false);
   const [currentFeedback, setCurrentFeedback] = useState(null);
 
-  // ✅ **Sayfa yüklendiğinde `localStorage` kontrol et, yoksa `data.json`'dan al**
   useEffect(() => {
-    const storedFeedbacks = JSON.parse(localStorage.getItem("feedbackData"));
-
-    if (storedFeedbacks && storedFeedbacks.length > 0) {
-      setFeedbacks(storedFeedbacks);
+    const storedFeedbacks = localStorage.getItem("feedbackData");
+  
+    if (storedFeedbacks) {
+      try {
+        const parsedFeedbacks = JSON.parse(storedFeedbacks);
+        if (Array.isArray(parsedFeedbacks)) {
+          setFeedbacks(parsedFeedbacks);
+        } else {
+          // Verinin geçerli bir dizi olmadığını kontrol et
+          localStorage.removeItem("feedbackData");
+        }
+      } catch (error) {
+        console.error("Geçersiz JSON verisi:", error);
+        localStorage.removeItem("feedbackData");  // Geçersiz veri varsa temizle
+      }
     } else {
+      // localStorage'da veri yoksa fetch ile veri al
       async function fetchNotes() {
-        const data = await fetch("data/data.json").then((r) => r.json());
-        setFeedbacks(data.feedbacks);
-        localStorage.setItem("feedbackData", JSON.stringify(data.feedbacks));
+        try {
+          const data = await fetch("data/data.json").then((r) => r.json());
+          setFeedbacks(data.feedbacks || []);
+          localStorage.setItem("feedbackData", JSON.stringify(data.feedbacks || []));
+        } catch (err) {
+          console.error("Veri alınırken hata oluştu:", err);
+        }
       }
       fetchNotes();
     }
-  }, []);
+  }, []);  
 
   // ✅ **`feedbacks` değiştiğinde `localStorage`'ı güncelle**
   useEffect(() => {
