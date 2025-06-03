@@ -65,7 +65,11 @@ Product Feedback App is a feedback management system where users can submit new 
 
 ### Ömer Kuluç
 
-- 
+- Implemented the dynamic rendering of all feedback-related comments within the `FeedbackDetail.jsx` component.
+- Created a looped comment structure that properly displays each comment's content, username, and profile image.
+- Ensured visual hierarchy and spacing consistency for nested replies and primary comments.
+- Used conditional checks to prevent rendering of undefined or empty comment arrays.
+- Added styling classes to differentiate replies from main comments, improving readability and UX.
 
 ## Live Demo
 
