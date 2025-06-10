@@ -61,7 +61,9 @@ Product Feedback App is a feedback management system where users can submit new 
 
 ### Mehmet Akif Küçükyılmaz
 
-- 
+- Designed Css Layouts for all devices and help other Contributiors for team work.
+- Implement hash router from other project to this project.
+- Created some of pages and etc.
 
 ### Ömer Kuluç
 
